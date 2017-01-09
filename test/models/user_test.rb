@@ -18,6 +18,12 @@ class UserTest < ActiveSupport::TestCase
     assert_includes new_user.errors[:email], 'is invalid'
   end
 
+  test 'username must be unique' do
+    already_existing_username = users(:markoates).username
+    new_user = User.create(username: already_existing_username)
+    assert_includes new_user.errors[:username], 'has already been taken'
+  end
+
   test 'email must be present' do
     new_user = User.create
     assert_includes new_user.errors[:email], "can't be blank"
@@ -32,5 +38,11 @@ class UserTest < ActiveSupport::TestCase
   test 'email must be valid' do
     new_user = User.create(email: 'an_invalid%^&*email')
     assert_includes new_user.errors[:email], 'is invalid'
+  end
+
+  test 'email must be unique' do
+    already_existing_email = users(:markoates).email
+    new_user = User.create(email: already_existing_email)
+    assert_includes new_user.errors[:email], 'has already been taken'
   end
 end
