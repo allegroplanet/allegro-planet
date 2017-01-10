@@ -5,8 +5,8 @@ class UserTest < ActiveSupport::TestCase
     User.destroy_all
     new_user = User.create!(username: 'mr. test',
                             email: 'test@email.com',
-                            password: 'pass',
-                            password_confirmation: 'pass'
+                            password: 'pass1word',
+                            password_confirmation: 'pass1word'
                            )
     assert_equal User.count, 1
   end
@@ -52,9 +52,33 @@ class UserTest < ActiveSupport::TestCase
 
   test 'email is saved in lowercase' do
     jumblecase_email = 'JuMbLeCaSe@EmAiL.CoM'
-    new_user = User.create(username: 'Mrs. Jumble', email: jumblecase_email)
+    new_user = User.create(username: 'Mrs. Jumble',
+                           email: jumblecase_email,
+                           password: 'pass1word',
+                           password_confirmation: 'pass1word'
+                          )
     new_user.save
     new_user.reload
     assert_includes new_user.email, 'jumblecase@email.com'
+  end
+
+  test 'with a password less than 8 characters, is invalid' do
+    new_user = User.create(password: 'pw2shrt')
+    assert_includes new_user.errors[:password], 'must have 8 or more characters'
+  end
+
+  test 'with a password that does not contain at least one digit, is invalid' do
+    new_user = User.create(password: 'nodigitshere')
+    assert_includes new_user.errors[:password], 'must have at least one digit'
+  end
+
+  test 'with a password that starts with whitespace, is invalid' do
+    new_user = User.create(password: ' startwithspace')
+    assert_includes new_user.errors[:password], 'can not start with whitespace'
+  end
+
+  test 'with a password that ends with whitespace, is invalid' do
+    new_user = User.create(password: 'endswithspace ')
+    assert_includes new_user.errors[:password], 'can not end with whitespace'
   end
 end
