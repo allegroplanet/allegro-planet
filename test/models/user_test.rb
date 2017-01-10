@@ -45,4 +45,12 @@ class UserTest < ActiveSupport::TestCase
     new_user = User.create(email: already_existing_email)
     assert_includes new_user.errors[:email], 'has already been taken'
   end
+
+  test 'email is saved in lowercase' do
+    jumblecase_email = 'JuMbLeCaSe@EmAiL.CoM'
+    new_user = User.create(username: 'Mrs. Jumble', email: jumblecase_email)
+    new_user.save
+    new_user.reload
+    assert_includes new_user.email, 'jumblecase@email.com'
+  end
 end
