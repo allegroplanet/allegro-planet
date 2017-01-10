@@ -3,7 +3,11 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   test 'creates a new user in the database' do
     User.destroy_all
-    new_user = User.create!(username: 'mr. test', email: 'test@email.com')
+    new_user = User.create!(username: 'mr. test',
+                            email: 'test@email.com',
+                            password: 'pass',
+                            password_confirmation: 'pass'
+                           )
     assert_equal User.count, 1
   end
 
