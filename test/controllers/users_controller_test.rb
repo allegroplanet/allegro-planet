@@ -33,7 +33,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       password_confirmation: 'valid1pass'
     }
 
-    post users_path, params: { user: valid_new_user_params }
+    post signup_path, params: { user: valid_new_user_params }
     assert_redirected_to '/users/joe-valid'
   end
 
@@ -45,7 +45,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       password_confirmation: 'pass2'
     }
 
-    post users_path, params: { user: invalid_new_user_params }
+    post signup_path, params: { user: invalid_new_user_params }
     assert_redirected_to '/signup'
   end
 end
