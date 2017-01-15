@@ -1,0 +1,5 @@
+module NameFormat
+  STARTS_WITH_NON_WHITESPACE = /\A\S/
+  ENDS_WITH_NON_WHITESPACE = /\S\z/
+  ONLY_PRINTABLE_CHARACTERS = /\A[[:print:]]*\z/
+end

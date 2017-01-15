@@ -5,6 +5,12 @@ class User < ApplicationRecord
     presence: true,
     length: { maximum: 24 },
     uniqueness: { case_sensitive: false }
+  validates :username, format: { with: NameFormat::ONLY_PRINTABLE_CHARACTERS,
+                                 message: 'can only contain printable characters' }
+  validates :username, format: { with: NameFormat::STARTS_WITH_NON_WHITESPACE,
+                                 message: 'can not start with whitespace' }
+  validates :username, format: { with: NameFormat::ENDS_WITH_NON_WHITESPACE,
+                                 message: 'can not end with whitespace' }
   validates :email,
     presence: true,
     length: { maximum: 255 },

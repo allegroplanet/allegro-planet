@@ -36,6 +36,24 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], 'has already been taken'
   end
 
+  test 'username must contain only printable characters' do
+    user.username = "\x0A"
+    user.save
+    assert_includes user.errors[:username], 'can only contain printable characters'
+  end
+
+  test 'username can not end in whitespace' do
+    user.username = 'endsinwhitespace '
+    user.save
+    assert_includes user.errors[:username], 'can not end with whitespace'
+  end
+
+  test 'username can not start with whitespace' do
+    user.username = ' startswithwhitespace'
+    user.save
+    assert_includes user.errors[:username], 'can not start with whitespace'
+  end
+
   test 'email must be present' do
     user.email = ''
     user.save
