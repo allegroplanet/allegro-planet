@@ -37,7 +37,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to '/users/joe-valid'
   end
 
-  test 'POST #create redirects to signup when invalid user params are passed' do
+  test 'POST #create renders the "new" template when invalid user params are passed' do
     invalid_new_user_params = {
       username: 'Joe InValid',
       email: 'invalidemail',
@@ -46,6 +46,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     }
 
     post signup_path, params: { user: invalid_new_user_params }
-    assert_redirected_to '/signup'
+    assert_template :new
   end
 end

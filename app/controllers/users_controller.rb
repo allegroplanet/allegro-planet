@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_path(slug: @user.slug)
     else
-      redirect_to signup_path
+      render :new
     end
   end
 
