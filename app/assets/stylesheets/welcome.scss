@@ -2,11 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$red:        #ca2222;
+$green:      #a5c57e;
+$dark_green: #5b7835;
+$blue:       #3d91d7;
+$light_blue: #5fb1f2;
+$yellow:     #fdee16;
+$black:      #000000;
+$white:      #ffffff;
+
+$small_box_padding: 10px 30px;
+$small_box_border_radius: 4px;
+
+$medium_box_padding: 15px 35px;
+$box_h_padding: 20px;
+
+$input_border: 0px;
+$input_padding: 8px;
+
 body
 {
   background: black no-repeat image-url("space_background-01.jpg") 50% 0;
   color: white;
   font-family: Helvetica, Arial, Sans-Serif;
+  font-weight: normal;
 }
 
 .center
@@ -18,4 +37,120 @@ body
   transform: translate(-50%, -50%);
 }
 
+.centered
+{
+  text-align: center;
+}
+
+.box
+{
+  padding: $small_box_padding;
+  text-align: left;
+}
+
+.red
+{
+  background-color: $red;
+  color: white;
+}
+
+.green
+{
+  background-color: $green;
+  color: white;
+}
+
+.blue
+{
+  background-color: $blue;
+  color: white;
+}
+
+.yellow
+{
+  background-color: $yellow;
+  border: 2px solid mix($yellow, $red, 50%);
+  color: black;
+}
+
+// orientations
+
+.center-full
+{
+  margin: auto;
+  width: 800px;
+  margin: 0;
+  padding: 0;
+}
+
+.two-thirds
+{
+  width: 500px;
+  float: left;
+  display: inline-block;
+}
+
+.one-third
+{
+  width: 300px;
+  float: left;
+  display: inline-block;
+}
+
+.inner-padding-medium
+{
+  padding: 20px+$input_padding 30px+$input_padding;
+}
+
+// form
+
+form
+{
+  padding: 20px+$input_padding 30px+$input_padding;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+form h1, form h2, form h3, form h4
+{
+  margin: 0 ($input_padding+$input_border)*-1 23px ($input_padding+$input_border)*-1;
+}
+
+form input
+{
+  display: block;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  padding: $input_padding $input_padding;
+  margin: 5px ($input_padding+$input_border)*-1 12px ($input_padding+$input_border)*-1;
+  border: $input_border solid white;
+}
+
+form input, form textarea
+{
+  border-radius: $small_box_border_radius;
+}
+
+form label
+{
+  font-size: 80%;
+  margin: 5px ($input_padding+$input_border)*-1 12px ($input_padding+$input_border)*-1;
+  color: $white;
+}
+
+form input[type=submit]
+{
+  border: 0;
+  font-size: 14px;
+  padding: $medium_box_padding;
+  background-color: $blue;
+  color: white;
+  border-radius: $small_box_border_radius;
+
+  font-weight: bold;
+  cursor: pointer;
+  margin: auto;
+}
 

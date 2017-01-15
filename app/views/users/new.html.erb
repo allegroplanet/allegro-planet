@@ -1,21 +1,37 @@
 <% provide(:title, 'Sign Up') %>
-<div class="center box1">
-  <h1>Sign Up</h1>
-  <%= form_for(@user, url: signup_path) do |f| %>
-    <%= render 'shared/error_messages' %>
+<div class="center box center-full">
+  <div class="two-thirds centered">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <%= image_tag("allegro_planet_logo-01c.png") %>
+    <h2>Allegro Planet</h2>
+    <p>
+    Share your games with the rest of the Allegro community.
+    </p>
+  </div>
+  <div class="one-third">
+    <%= form_for(@user, url: signup_path) do |f| %>
+      <h1>Sign Up</h1>
+      <%= render 'shared/error_messages' %>
 
-    <%= f.label :username %><br>
-    <%= f.text_field :username %><br>
+      <%= f.label :username, "Choose your username" %>
+      <%= f.text_field :username %>
 
-    <%= f.label :email %><br>
-    <%= f.email_field :email %><br>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
 
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
 
-    <%= f.label :password_confirmation, "Password Again" %><br>
-    <%= f.password_field :password_confirmation %><br>
+      <%= f.label :password_confirmation, "Password again" %>
+      <%= f.password_field :password_confirmation %>
 
-    <%= f.submit "Sign me up!" %>
-  <% end %>
+      <br>
+
+      <%= f.submit "Sign me up!" %>
+    <% end %>
+  </div>
 </div>
