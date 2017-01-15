@@ -1,0 +1,7 @@
+module StringFormat
+  STARTS_WITH_NON_WHITESPACE = /\A\S/
+  ENDS_WITH_NON_WHITESPACE = /\S\z/
+  ONLY_PRINTABLE_CHARACTERS = /\A[[:print:]]*\z/
+  EIGHT_OR_MORE_CHARACTERS = /\A.{8,}\z/
+  CONTAINS_A_DIGIT = /\d/
+end

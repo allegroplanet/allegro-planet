@@ -1,6 +1,0 @@
-module PasswordFormat
-  EIGHT_OR_MORE_CHARACTERS = /\A.{8,}\z/
-  CONTAINS_A_DIGIT = /\d/
-  STARTS_WITH_NON_WHITESPACE = /\A\S/
-  ENDS_WITH_NON_WHITESPACE = /\S\z/
-end

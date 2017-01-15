@@ -1,6 +1,7 @@
 markoates:
   username: markoates
   email: marks@example.com
+  slug: markoates
   first_name: Mark
   last_name: Oates
   website: www.example.com
