@@ -5,6 +5,13 @@ class GameTest < ActiveSupport::TestCase
     @game ||= Game.new(title: 'Game Title', description: 'The best game ever.')
   end
 
+  test 'saves a game to the database' do
+    Game.destroy_all
+    game.save
+    assert game.errors.empty?
+    assert_equal 1, Game.count
+  end
+
   test 'without a title, is invalid' do
     game.title = nil
     game.validate
