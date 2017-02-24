@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
+  def game_associations(association_type, property)
+    Game.reflect_on_all_associations(association_type).select { |a| a.name == property }
+  end
+
   def game
     @game ||= Game.new(title: 'Game Title', description: 'The best game ever.')
   end
@@ -44,5 +48,10 @@ class GameTest < ActiveSupport::TestCase
   test 'description is formatted with the expected rules' do
     expected_validation_rules = [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters]
     assert_validates_format_rules expected_validation_rules, Game, :description
+  end
+
+  test 'has many game screenshots' do
+    associations = game_associations(:has_many, :game_screenshots)
+    assert associations.one?
   end
 end
