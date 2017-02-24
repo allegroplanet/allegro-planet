@@ -7,6 +7,7 @@ end
 
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '~> 4.2.7'
+gem 'carrierwave-aws'
 
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
