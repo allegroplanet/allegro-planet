@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  def user_associations(association_type, property)
+    User.reflect_on_all_associations(association_type).select { |a| a.name == property }
+  end
 
   def user
     @user ||= User.new(username: 'mr. test',
@@ -122,5 +125,10 @@ class UserTest < ActiveSupport::TestCase
     user.username = username_that_already_exists
     user.save
     assert_includes user.errors[:slug], 'has already been taken'
+  end
+
+  test 'has and belongs to many games' do
+    associations = user_associations(:has_and_belongs_to_many, :games)
+    assert associations.one?
   end
 end

@@ -29,6 +29,8 @@ class User < ApplicationRecord
   validates :password, format: { with: StringFormat::ENDS_WITH_NON_WHITESPACE,
                                  message: 'can not end with whitespace' }
 
+  has_and_belongs_to_many :games
+
   private
 
     def generate_slug

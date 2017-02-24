@@ -54,4 +54,9 @@ class GameTest < ActiveSupport::TestCase
     associations = game_associations(:has_many, :game_screenshots)
     assert associations.one?
   end
+
+  test 'has and belongs to many users' do
+    associations = game_associations(:has_and_belongs_to_many, :users)
+    assert associations.one?
+  end
 end
