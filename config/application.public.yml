@@ -1,0 +1,17 @@
+development:
+  aws_access_key_id: secret
+  aws_secret_access_key: secret
+  aws_region: secret
+  aws_allegro_planet_bucket: secret
+
+test:
+  aws_access_key_id: secret
+  aws_secret_access_key: secret
+  aws_region: secret
+  aws_allegro_planet_bucket: secret
+
+production:
+  aws_access_key_id: secret
+  aws_secret_access_key: secret
+  aws_region: secret
+  aws_allegro_planet_bucket: secret

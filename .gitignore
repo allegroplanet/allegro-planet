@@ -18,3 +18,5 @@
 
 # Ignore Mac droppings
 .DS_Store
+
+/config/application.yml
