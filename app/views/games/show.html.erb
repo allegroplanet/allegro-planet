@@ -1,0 +1,11 @@
+<h1><%= @game.title %></h1>
+
+<h3>Description</h3>
+<div><%= @game.description %></div>
+
+<h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
+<div>
+  <% @screenshot_urls.each do |screenshot_url| %>
+    <%= image_tag(screenshot_url) %>
+  <% end %>
+</div>
