@@ -2,6 +2,6 @@
 
 <ul>
   <% @games.each do |game| %>
-    <li><p><%= link_to(game.title, "/depot/games/#{game.id}") %></li>
+    <li><p><%= link_to(game.title, "/depot/games/#{game.slug}") %></li>
   <% end %>
 </ul>
