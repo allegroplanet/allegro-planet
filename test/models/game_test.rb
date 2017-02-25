@@ -61,6 +61,13 @@ class GameTest < ActiveSupport::TestCase
     assert_equal game.slug, 'game-title'
   end
 
+  test 'with a slug that already exists, is invalid' do
+    game_title_that_already_exists = games(:alex_adventures).title
+    game.title = game_title_that_already_exists
+    game.validate
+    assert_includes game.errors[:slug], 'has already been taken'
+  end
+
   test 'has many game screenshots' do
     associations = game_associations(:has_many, :game_screenshots)
     assert associations.one?
