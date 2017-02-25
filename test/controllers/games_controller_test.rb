@@ -7,7 +7,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'GET #show is successful' do
-    get "/depot/games/#{games(:alex_adventures).id}"
+    get "/depot/games/#{games(:alex_adventures).slug}"
     assert_response :success
   end
 end

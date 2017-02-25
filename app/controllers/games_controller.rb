@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find_by(slug: params[:slug]) or record_not_found
     @screenshot_urls = @game.game_screenshots.collect { |s| s.image.url }
   end
 end
