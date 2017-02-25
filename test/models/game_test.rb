@@ -16,6 +16,12 @@ class GameTest < ActiveSupport::TestCase
     assert_equal 1, Game.count
   end
 
+  test 'without a unique title, is invalid' do
+    game.title = games(:alex_adventures).title
+    game.validate
+    assert_includes game.errors[:title], 'has already been taken'
+  end
+
   test 'without a title, is invalid' do
     game.title = nil
     game.validate

@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   validates :title,
     presence: true,
+    uniqueness: true,
     allow_blank: false,
     string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters] }
 
