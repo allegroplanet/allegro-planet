@@ -56,6 +56,11 @@ class GameTest < ActiveSupport::TestCase
     assert_validates_format_rules expected_validation_rules, Game, :description
   end
 
+  test 'generates a slug on validation' do
+    game.validate
+    assert_equal game.slug, 'game-title'
+  end
+
   test 'has many game screenshots' do
     associations = game_associations(:has_many, :game_screenshots)
     assert associations.one?

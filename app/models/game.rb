@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  before_validation :generate_slug
+
   validates :title,
     presence: true,
     uniqueness: true,
@@ -13,4 +15,10 @@ class Game < ApplicationRecord
   has_many :game_screenshots
 
   has_and_belongs_to_many :users
+
+  private
+
+    def generate_slug
+      self.slug ||= self.title.parameterize if self.title.present?
+    end
 end
