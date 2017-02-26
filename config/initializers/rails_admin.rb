@@ -60,4 +60,16 @@ RailsAdmin.config do |config|
       end
     end
   end
+
+  # GameRelease
+
+  config.model 'GameRelease' do
+    object_label_method do
+      :game_release_label_method
+    end
+  end
+
+  def game_release_label_method
+    "#{self.game.slug}-#{self.version_num}"
+  end
 end

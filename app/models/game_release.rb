@@ -6,4 +6,6 @@ class GameRelease < ApplicationRecord
     string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters] }
 
   belongs_to :game
+
+  has_many :game_files
 end
