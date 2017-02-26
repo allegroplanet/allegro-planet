@@ -18,6 +18,12 @@ class GameFileTest < ActiveSupport::TestCase
     assert game_file.errors.empty?
   end
 
+  test 'without a category, is invalid' do
+    game_file.category = nil
+    game_file.validate
+    assert_includes game_file.errors[:category], GameFile::INCLUSION_MESSAGE
+  end
+
   test 'can have a valid category' do
     GameFile::GAME_FILE_CATEGORIES.each do |category|
       game_file.category = category
@@ -29,7 +35,7 @@ class GameFileTest < ActiveSupport::TestCase
   test 'with an category that is not a known category, is invalid' do
     game_file.category = 'Not a known category'
     game_file.validate
-    assert_includes game_file.errors[:category], '"Not a known category" is not a valid value'
+    assert_includes game_file.errors[:category], GameFile::INCLUSION_MESSAGE
   end
 
   test 'belongs_to to a game_release' do
