@@ -5,7 +5,7 @@ class GameScreenshotTest < ActiveSupport::TestCase
     GameScreenshot.reflect_on_all_associations(association_type).select { |a| a.name == property }
   end
 
-  test 'belongs to a author' do
+  test 'belongs to a game' do
     associations = game_screenshot_associations(:belongs_to, :game)
     assert associations.one?
   end

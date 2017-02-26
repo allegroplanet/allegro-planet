@@ -9,11 +9,9 @@ class GameTest < ActiveSupport::TestCase
     @game ||= Game.new(title: 'Game Title', description: 'The best game ever.')
   end
 
-  test 'saves a game to the database' do
-    Game.destroy_all
-    game.save
+  test 'validates without errors' do
+    game.validate
     assert game.errors.empty?
-    assert_equal 1, Game.count
   end
 
   test 'without a unique title, is invalid' do
@@ -70,6 +68,11 @@ class GameTest < ActiveSupport::TestCase
 
   test 'has many game screenshots' do
     associations = game_associations(:has_many, :game_screenshots)
+    assert associations.one?
+  end
+
+  test 'has many game releases' do
+    associations = game_associations(:has_many, :game_releases)
     assert associations.one?
   end
 
