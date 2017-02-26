@@ -1,4 +1,14 @@
 RailsAdmin.config do |config|
+  config.authorize_with do
+    authenticate_or_request_with_http_basic('Login Required') do |username, password|
+      if Rails.env.production?
+        username == Rails.application.secrets.admin_login_username && password == Rails.application.secrets.admin_login_password
+      else
+        true
+      end
+    end
+  end
+
   config.actions do
     dashboard
     index
