@@ -53,4 +53,9 @@ class GameReleaseTest < ActiveSupport::TestCase
     game_release.validate
     assert_includes game_release.errors[:game], 'must exist'
   end
+
+  test 'has_many to a game_files' do
+    associations = game_release_associations(:has_many, :game_files)
+    assert associations.one?
+  end
 end
