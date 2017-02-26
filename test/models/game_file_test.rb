@@ -42,4 +42,8 @@ class GameFileTest < ActiveSupport::TestCase
     associations = game_file_associations(:belongs_to, :game_release)
     assert associations.one?
   end
+
+  test 'has the expected category error message' do
+    assert_equal GameFile::INCLUSION_MESSAGE, "must be one of #{GameFile::GAME_FILE_CATEGORIES}"
+  end
 end
