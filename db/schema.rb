@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226080301) do
+ActiveRecord::Schema.define(version: 20170226084857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20170226080301) do
   create_table "game_files", force: :cascade do |t|
     t.string   "file"
     t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "game_release_id"
+    t.index ["game_release_id"], name: "index_game_files_on_game_release_id", using: :btree
   end
 
   create_table "game_releases", force: :cascade do |t|

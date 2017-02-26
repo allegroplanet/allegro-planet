@@ -4,4 +4,6 @@ class GameFile < ApplicationRecord
   mount_uploader :file, GameFileUploader
 
   validates :category, inclusion: { in: GAME_FILE_CATEGORIES, message: "\"%{value}\" is not a valid value" }
+
+  belongs_to :game_release
 end
