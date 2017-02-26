@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225165641) do
+ActiveRecord::Schema.define(version: 20170226065723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_releases", force: :cascade do |t|
+    t.string   "version_num"
+    t.text     "notes"
+    t.integer  "game_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["game_id"], name: "index_game_releases_on_game_id", using: :btree
+  end
 
   create_table "game_screenshots", force: :cascade do |t|
     t.string   "image"
@@ -51,5 +60,6 @@ ActiveRecord::Schema.define(version: 20170225165641) do
     t.string   "slug"
   end
 
+  add_foreign_key "game_releases", "games"
   add_foreign_key "game_screenshots", "games"
 end
