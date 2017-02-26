@@ -1,0 +1,2 @@
+class GameFile < ApplicationRecord
+end
