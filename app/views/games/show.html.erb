@@ -9,3 +9,15 @@
     <%= image_tag(screenshot_url) %>
   <% end %>
 </div>
+
+<h3>Releases (<%= @releases.count %>)</h3>
+<div>
+  <% @releases.each do |release| %>
+    <h4><%= release.version_num %></h4>
+    <ul>
+    <% release.game_files.each do |game_file| %>
+      <li><%= link_to(game_file.category, game_file.file.url) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
