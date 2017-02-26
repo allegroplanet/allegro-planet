@@ -4,7 +4,7 @@ class GameFileUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    ['zip']
+    ['zip', '7z']
   end
 end
 
