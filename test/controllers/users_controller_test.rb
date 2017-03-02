@@ -6,12 +6,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'GET #show is successful' do
-    get user_path(user.slug)
+    get user_path(user)
     assert_response :success
   end
 
   test 'GET #show renders the "show" template' do
-    get user_path(user.slug)
+    get user_path(user)
     assert_template :show
   end
 
