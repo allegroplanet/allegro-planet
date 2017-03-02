@@ -31,7 +31,7 @@ RailsAdmin.config do |config|
         :email,
         :updated_at,
         :password_digest,
-        :slug,
+        :handle,
         :website,
         :description
     end
@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :created_at,
         :password_digest
-      configure :slug do
+      configure :handle do
         read_only true
       end
     end
