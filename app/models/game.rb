@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  before_validation :generate_slug
+  before_validation :generate_handle
 
   validates :title,
     presence: true,
@@ -12,7 +12,7 @@ class Game < ApplicationRecord
     allow_blank: false,
     string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters] }
 
-  validates :slug,
+  validates :handle,
     presence: true,
     uniqueness: true
 
@@ -23,12 +23,12 @@ class Game < ApplicationRecord
   has_and_belongs_to_many :users
 
   def to_param
-    slug
+    handle
   end
 
   private
 
-    def generate_slug
-      self.slug ||= self.title.parameterize if self.title.present?
+    def generate_handle
+      self.handle ||= self.title.parameterize if self.title.present?
     end
 end
