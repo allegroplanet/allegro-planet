@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'welcome#index'
 
-  resources :games, param: :slug, only: [:index, :show]
+  resources :games, param: :handle, only: [:index, :show]
 
   resources :users, param: :slug, only: [:show]
   get '/signup', to: 'users#new'
