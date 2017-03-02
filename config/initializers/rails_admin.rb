@@ -31,7 +31,7 @@ RailsAdmin.config do |config|
         :email,
         :updated_at,
         :password_digest,
-        :slug,
+        :handle,
         :website,
         :description
     end
@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :created_at,
         :password_digest
-      configure :slug do
+      configure :handle do
         read_only true
       end
     end
@@ -55,7 +55,7 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :created_at,
         :updated_at
-      configure :slug do
+      configure :handle do
         read_only true
       end
     end
@@ -70,6 +70,6 @@ RailsAdmin.config do |config|
   end
 
   def game_release_label_method
-    "#{self.game.slug}-#{self.version_num}"
+    "#{self.game.handle}-#{self.version_num}"
   end
 end

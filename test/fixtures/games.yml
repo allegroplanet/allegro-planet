@@ -1,8 +1,8 @@
 alex_adventures:
   title: Alex Adventures
   description: Join Alex as he explores the vast underbelly of modern society.
-  slug: alex-adventures
+  handle: alex-adventures
 super_biker:
   title: Super Biker
   description: A fast-paced action racer.
-  slug: super-biker
+  handle: super-biker

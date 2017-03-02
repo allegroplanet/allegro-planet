@@ -54,16 +54,16 @@ class GameTest < ActiveSupport::TestCase
     assert_validates_format_rules expected_validation_rules, Game, :description
   end
 
-  test 'generates a slug on validation' do
+  test 'generates a handle on validation' do
     game.validate
-    assert_equal game.slug, 'game-title'
+    assert_equal game.handle, 'game-title'
   end
 
-  test 'with a slug that already exists, is invalid' do
+  test 'with a handle that already exists, is invalid' do
     game_title_that_already_exists = games(:alex_adventures).title
     game.title = game_title_that_already_exists
     game.validate
-    assert_includes game.errors[:slug], 'has already been taken'
+    assert_includes game.errors[:handle], 'has already been taken'
   end
 
   test 'has many game screenshots' do
