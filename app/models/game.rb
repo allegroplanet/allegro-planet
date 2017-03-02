@@ -22,6 +22,10 @@ class Game < ApplicationRecord
 
   has_and_belongs_to_many :users
 
+  def to_param
+    slug
+  end
+
   private
 
     def generate_slug

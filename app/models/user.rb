@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :games
 
+  def to_param
+    slug
+  end
+
   private
 
     def generate_slug
