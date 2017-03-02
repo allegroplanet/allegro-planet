@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_save { email.downcase! }
-  before_validation :generate_slug
+  before_validation :generate_handle
   validates :username,
     presence: true,
     length: { maximum: 24 },
@@ -16,7 +16,7 @@ class User < ApplicationRecord
     length: { maximum: 255 },
     format: { with: EmailFormat::EMAIL },
     uniqueness: { case_sensitive: false }
-  validates :slug,
+  validates :handle,
     presence: true,
     uniqueness: true
   has_secure_password
@@ -32,12 +32,12 @@ class User < ApplicationRecord
   has_and_belongs_to_many :games
 
   def to_param
-    slug
+    handle
   end
 
   private
 
-    def generate_slug
-      self.slug ||= self.username.parameterize if self.username.present?
+    def generate_handle
+      self.handle ||= self.username.parameterize if self.username.present?
     end
 end

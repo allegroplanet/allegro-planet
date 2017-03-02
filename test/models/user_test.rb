@@ -115,16 +115,16 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:password], 'can not end with whitespace'
   end
 
-  test 'generates a slug on validation' do
+  test 'generates a handle on validation' do
     user.save
-    assert_equal user.slug, 'mr-test'
+    assert_equal user.handle, 'mr-test'
   end
 
-  test 'with a slug that already exists, is invalid' do
+  test 'with a handle that already exists, is invalid' do
     username_that_already_exists = users(:markoates).username
     user.username = username_that_already_exists
     user.save
-    assert_includes user.errors[:slug], 'has already been taken'
+    assert_includes user.errors[:handle], 'has already been taken'
   end
 
   test 'has and belongs to many games' do
