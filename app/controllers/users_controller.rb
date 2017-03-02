@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find_by(slug: params[:slug]) or record_not_found
+    @user = User.find_by(handle: params[:handle]) or record_not_found
   end
 
   def new
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(slug: @user.slug)
+      redirect_to user_path(handle: @user)
     else
       render :new
     end

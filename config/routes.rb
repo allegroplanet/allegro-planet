@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :games, param: :handle, only: [:index, :show]
 
-  resources :users, param: :slug, only: [:show]
+  resources :users, param: :handle, only: [:show]
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 end
