@@ -29,6 +29,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       :only_printable_characters_and_newlines,
       :email,
       :username_characters,
+      :at_least_one_alphanumeric_character,
     ]
     existing_rules = StringFormatValidator::VALIDATIONS.keys
     assert_equal expected_rules, existing_rules
@@ -103,5 +104,19 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       foo.validate
       assert_includes foo.errors[:bar], "can only contain alphanumeric, '-', '_', space, '.', and '~' characters"
     end
+  end
+
+  test ':at_least_one_alphanumeric_character must contain at least one character in [0-9a-zA-Z]' do
+    FooClass.validates(:bar, string_format: { rules: [:at_least_one_alphanumeric_character] })
+
+    allowed_characters = ('a'..'z').to_a + ('0'..'9').to_a + ('A'..'Z').to_a
+
+    foo = FooClass.new("-_~")
+    foo.validate
+    assert_includes foo.errors[:bar], "must contain at least one alphanumeric character"
+
+    foo = FooClass.new("-A~")
+    foo.validate
+    refute_includes foo.errors[:bar], "must contain at least one alphanumeric character"
   end
 end
