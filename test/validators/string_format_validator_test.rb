@@ -57,7 +57,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
   test ':only_printable_characters_and_newlines rule checks that the value can only contain printable characters and newlines' do
     FooClass.validates(:bar, string_format: { rules: [:only_printable_characters_and_newlines] })
 
-    allowed_characters = printable_characters.push("\n")
+    allowed_characters = printable_characters + ["\r", "\n"]
 
     allowed_characters.each do |char|
       foo = FooClass.new("#{char}")

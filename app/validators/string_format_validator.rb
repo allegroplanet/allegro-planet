@@ -3,7 +3,7 @@ class StringFormatValidator < ActiveModel::EachValidator
     starts_with_non_whitespace: { regex: /\A\S/, message: "can't start with whitespace", },
     ends_with_non_whitespace: { regex: /\S\z/, message: "can't end with whitespace", },
     only_printable_characters: { regex: /\A[[:print:]]*\z/, message: 'can only contain printable characters', },
-    only_printable_characters_and_newlines: { regex: /\A[[:print:]\n]*\z/, message: 'can only contain printable characters and newlines', },
+    only_printable_characters_and_newlines: { regex: /\A[[:print:]\r\n]*\z/, message: 'can only contain printable characters and newlines', },
     email: { regex: /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i, message: 'must be a valid email' },
   }
 
