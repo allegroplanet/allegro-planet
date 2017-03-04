@@ -21,58 +21,58 @@ class UserTest < ActiveSupport::TestCase
 
   test 'username must be present' do
     user.username = ''
-    user.save
+    user.validate
     assert_includes user.errors[:username], "can't be blank"
   end
 
   test 'username can not be longer than 24 characters' do
     username_too_long = 'a' * 25
     user.username = username_too_long
-    user.save
+    user.validate
     assert_includes user.errors[:username], 'is too long (maximum is 24 characters)'
   end
 
   test 'username must be unique' do
     already_existing_username = users(:markoates).username
     user.username = already_existing_username
-    user.save
+    user.validate
     assert_includes user.errors[:username], 'has already been taken'
   end
 
   test 'username must contain only printable characters' do
     user.username = "\x0A"
-    user.save
+    user.validate
     assert_includes user.errors[:username], 'can only contain printable characters'
   end
 
   test 'username can not end in whitespace' do
     user.username = 'endsinwhitespace '
-    user.save
+    user.validate
     assert_includes user.errors[:username], "can't end with whitespace"
   end
 
   test 'username can not start with whitespace' do
     user.username = ' startswithwhitespace'
-    user.save
+    user.validate
     assert_includes user.errors[:username], "can't start with whitespace"
   end
 
   test 'email must be present' do
     user.email = ''
-    user.save
+    user.validate
     assert_includes user.errors[:email], "can't be blank"
   end
 
   test 'email must be valid' do
     user.email = 'an_invalid%^&*email'
-    user.save
+    user.validate
     assert_includes user.errors[:email], 'must be a valid email'
   end
 
   test 'email must be unique' do
     already_existing_email = users(:markoates).email
     user.email = already_existing_email
-    user.save
+    user.validate
     assert_includes user.errors[:email], 'has already been taken'
   end
 
@@ -86,37 +86,37 @@ class UserTest < ActiveSupport::TestCase
 
   test 'with a password less than 8 characters, is invalid' do
     user.password = 'pw2shrt'
-    user.save
+    user.validate
     assert_includes user.errors[:password], 'is too short (minimum is 8 characters)'
   end
 
   test 'with a password that starts with whitespace, is invalid' do
     user.password = ' startwithspace'
-    user.save
+    user.validate
     assert_includes user.errors[:password], "can't start with whitespace"
   end
 
   test 'with a password that ends with whitespace, is invalid' do
     user.password = 'endswithspace '
-    user.save
+    user.validate
     assert_includes user.errors[:password], "can't end with whitespace"
   end
 
   test 'with a password that contains non-printable characters, is invalid' do
     user.password = "\0x07"
-    user.save
+    user.validate
     assert_includes user.errors[:password], 'can only contain printable characters'
   end
 
   test 'generates a handle on validation' do
-    user.save
+    user.validate
     assert_equal user.handle, 'mr-test'
   end
 
   test 'with a handle that already exists, is invalid' do
     username_that_already_exists = users(:markoates).username
     user.username = username_that_already_exists
-    user.save
+    user.validate
     assert_includes user.errors[:handle], 'has already been taken'
   end
 
