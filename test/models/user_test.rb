@@ -48,13 +48,13 @@ class UserTest < ActiveSupport::TestCase
   test 'username can not end in whitespace' do
     user.username = 'endsinwhitespace '
     user.save
-    assert_includes user.errors[:username], 'can not end with whitespace'
+    assert_includes user.errors[:username], "can't end with whitespace"
   end
 
   test 'username can not start with whitespace' do
     user.username = ' startswithwhitespace'
     user.save
-    assert_includes user.errors[:username], 'can not start with whitespace'
+    assert_includes user.errors[:username], "can't start with whitespace"
   end
 
   test 'email must be present' do
