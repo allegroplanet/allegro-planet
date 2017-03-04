@@ -93,13 +93,13 @@ class UserTest < ActiveSupport::TestCase
   test 'with a password that starts with whitespace, is invalid' do
     user.password = ' startwithspace'
     user.save
-    assert_includes user.errors[:password], 'can not start with whitespace'
+    assert_includes user.errors[:password], "can't start with whitespace"
   end
 
   test 'with a password that ends with whitespace, is invalid' do
     user.password = 'endswithspace '
     user.save
-    assert_includes user.errors[:password], 'can not end with whitespace'
+    assert_includes user.errors[:password], "can't end with whitespace"
   end
 
   test 'generates a handle on validation' do

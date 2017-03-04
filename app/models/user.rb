@@ -22,11 +22,8 @@ class User < ApplicationRecord
     uniqueness: true
 
   validates :password,
-    length: { minimum: 8 }
-  validates :password, format: { with: StringFormat::STARTS_WITH_NON_WHITESPACE,
-                                 message: 'can not start with whitespace' }
-  validates :password, format: { with: StringFormat::ENDS_WITH_NON_WHITESPACE,
-                                 message: 'can not end with whitespace' }
+    length: { minimum: 8 },
+    string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace] }
 
   has_and_belongs_to_many :games
 
