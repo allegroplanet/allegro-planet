@@ -32,6 +32,13 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], 'is too long (maximum is 24 characters)'
   end
 
+  test 'username must be at least 2 characters' do
+    username_too_short = 'B'
+    user.username = username_too_short
+    user.validate
+    assert_includes user.errors[:username], 'is too short (minimum is 2 characters)'
+  end
+
   test 'username must be unique' do
     already_existing_username = users(:markoates).username
     user.username = already_existing_username

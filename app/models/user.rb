@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   validates :username,
     presence: true,
-    length: { maximum: 24 },
+    length: { maximum: 24, minimum: 2 },
     uniqueness: { case_sensitive: false },
     string_format: { rules: [:only_printable_characters, :starts_with_non_whitespace, :ends_with_non_whitespace] }
 
