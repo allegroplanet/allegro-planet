@@ -90,12 +90,6 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:password], 'must have 8 or more characters'
   end
 
-  test 'with a password that does not contain at least one digit, is invalid' do
-    user.password = 'nodigits'
-    user.save
-    assert_includes user.errors[:password], 'must have at least one digit'
-  end
-
   test 'with a password that starts with whitespace, is invalid' do
     user.password = ' startwithspace'
     user.save
