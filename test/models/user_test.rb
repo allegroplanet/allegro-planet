@@ -102,6 +102,12 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:password], "can't end with whitespace"
   end
 
+  test 'with a password that contains non-printable characters, is invalid' do
+    user.password = "\0x07"
+    user.save
+    assert_includes user.errors[:password], 'can only contain printable characters'
+  end
+
   test 'generates a handle on validation' do
     user.save
     assert_equal user.handle, 'mr-test'
