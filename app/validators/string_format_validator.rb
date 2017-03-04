@@ -5,6 +5,8 @@ class StringFormatValidator < ActiveModel::EachValidator
     only_printable_characters: { regex: /\A[[:print:]]*\z/, message: 'can only contain printable characters', },
     only_printable_characters_and_newlines: { regex: /\A[[:print:]\r\n]*\z/, message: 'can only contain printable characters and newlines', },
     email: { regex: /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i, message: 'must be a valid email' },
+    username_characters: { regex: /\A[[:alnum:] \._\-~]*\z/, message: "can only contain alphanumeric, '-', '_', space, '.', and '~' characters" },
+    at_least_one_alphanumeric_character: { regex: /[[:alnum:]]+/, message: "must contain at least one alphanumeric character" },
   }
 
   def validate_each(record, attribute, value)

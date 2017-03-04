@@ -32,6 +32,13 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], 'is too long (maximum is 24 characters)'
   end
 
+  test 'username must be at least 2 characters' do
+    username_too_short = 'B'
+    user.username = username_too_short
+    user.validate
+    assert_includes user.errors[:username], 'is too short (minimum is 2 characters)'
+  end
+
   test 'username must be unique' do
     already_existing_username = users(:markoates).username
     user.username = already_existing_username
@@ -39,10 +46,16 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], 'has already been taken'
   end
 
-  test 'username must contain only printable characters' do
+  test 'username must contain only the allowed characters' do
     user.username = "\x0A"
     user.validate
-    assert_includes user.errors[:username], 'can only contain printable characters'
+    assert_includes user.errors[:username], "can only contain alphanumeric, '-', '_', space, '.', and '~' characters"
+  end
+
+  test 'username must have at least one alphanumeric character' do
+    user.username = "_-~"
+    user.validate
+    assert_includes user.errors[:username], 'must contain at least one alphanumeric character'
   end
 
   test 'username can not end in whitespace' do
