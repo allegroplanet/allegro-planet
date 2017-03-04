@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :email,
     presence: true,
     length: { maximum: 255 },
-    format: { with: EmailFormat::EMAIL },
+    string_format: { rules: [:email] },
     uniqueness: { case_sensitive: false }
 
   validates :handle,

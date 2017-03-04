@@ -63,17 +63,10 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:email], "can't be blank"
   end
 
-  test 'email must be less that 255 characters' do
-    too_long_email = 'a' * 256
-    user.email = too_long_email
-    user.save
-    assert_includes user.errors[:email], 'is invalid'
-  end
-
   test 'email must be valid' do
     user.email = 'an_invalid%^&*email'
     user.save
-    assert_includes user.errors[:email], 'is invalid'
+    assert_includes user.errors[:email], 'must be a valid email'
   end
 
   test 'email must be unique' do
