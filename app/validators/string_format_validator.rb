@@ -2,7 +2,8 @@ class StringFormatValidator < ActiveModel::EachValidator
   VALIDATIONS = {
     starts_with_non_whitespace: { regex: /\A\S/, message: "can't start with whitespace", },
     ends_with_non_whitespace: { regex: /\S\z/, message: "can't end with whitespace", },
-    has_only_printable_characters: { regex: /\A[[:print:]]*\z/, message: 'can only contain printable characters', }
+    only_printable_characters: { regex: /\A[[:print:]]*\z/, message: 'can only contain printable characters', },
+    only_printable_characters_and_newlines: { regex: /\A[[:print:]\n]*\z/, message: 'can only contain printable characters and newlines', },
   }
 
   def validate_each(record, attribute, value)
