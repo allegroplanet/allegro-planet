@@ -10,6 +10,7 @@ gem 'mini_magick', '~> 4.2.7'
 gem 'carrierwave-aws'
 gem 'figaro', '~> 1.1.1'
 gem 'rails_admin', '~> 1.1.1'
+gem 'redcarpet'
 
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
