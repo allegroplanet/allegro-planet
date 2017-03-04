@@ -50,7 +50,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test 'description is formatted with the expected rules' do
-    expected_validation_rules = [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters]
+    expected_validation_rules = [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters_and_newlines]
     assert_validates_format_rules expected_validation_rules, Game, :description
   end
 

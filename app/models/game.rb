@@ -10,7 +10,7 @@ class Game < ApplicationRecord
   validates :description,
     presence: true,
     allow_blank: false,
-    string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters] }
+    string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters_and_newlines] }
 
   validates :handle,
     presence: true,
