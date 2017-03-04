@@ -46,10 +46,10 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], 'has already been taken'
   end
 
-  test 'username must contain only printable characters' do
+  test 'username must contain only the allowed characters' do
     user.username = "\x0A"
     user.validate
-    assert_includes user.errors[:username], 'can only contain printable characters'
+    assert_includes user.errors[:username], "contain only alphanumeric, '-', '_', space, '.', and '~' characters"
   end
 
   test 'username can not end in whitespace' do
