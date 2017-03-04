@@ -52,6 +52,12 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:username], "can only contain alphanumeric, '-', '_', space, '.', and '~' characters"
   end
 
+  test 'username must have at least one alphanumeric character' do
+    user.username = "_-~"
+    user.validate
+    assert_includes user.errors[:username], 'must contain at least one alphanumeric character'
+  end
+
   test 'username can not end in whitespace' do
     user.username = 'endsinwhitespace '
     user.validate
