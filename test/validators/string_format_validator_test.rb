@@ -9,6 +9,14 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     end
   end
 
+  def ascii_characters
+    @ascii_characters ||= (0..255).to_a.map(&:chr)
+  end
+
+  def printable_characters
+    @printable_characters ||= (32..126).to_a.map(&:chr)
+  end
+
   def teardown
     FooClass.clear_validators!
   end
@@ -18,6 +26,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       :starts_with_non_whitespace,
       :ends_with_non_whitespace,
       :only_printable_characters,
+      :only_printable_characters_and_newlines,
     ]
     existing_rules = StringFormatValidator::VALIDATIONS.keys
     assert_equal expected_rules, existing_rules
@@ -42,5 +51,24 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     foo = FooClass.new("\x0A")
     foo.validate
     assert_includes foo.errors[:bar], 'can only contain printable characters'
+  end
+
+  test ':only_printable_characters_and_newlines rule checks that the value can only contain printable characters and newlines' do
+    FooClass.validates(:bar, string_format: { rules: [:only_printable_characters_and_newlines] })
+
+    allowed_characters = printable_characters.push("\n")
+
+    allowed_characters.each do |char|
+      foo = FooClass.new("#{char}")
+      foo.validate
+      refute_includes foo.errors[:bar], 'can only contain printable characters and newlines'
+    end
+
+    disallowed_characters = ascii_characters - allowed_characters
+    disallowed_characters.each do |char|
+      foo = FooClass.new(char)
+      foo.validate
+      assert_includes foo.errors[:bar], 'can only contain printable characters and newlines', foo.bar
+    end
   end
 end
