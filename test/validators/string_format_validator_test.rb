@@ -13,7 +13,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     expected_rules = [
       :starts_with_non_whitespace,
       :ends_with_non_whitespace,
-      :has_only_printable_characters
+      :only_printable_characters,
     ]
     existing_rules = StringFormatValidator::VALIDATIONS.keys
     assert_equal expected_rules, existing_rules
@@ -33,8 +33,8 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     assert_includes foo.errors[:bar], "can't end with whitespace"
   end
 
-  test ':has_only_printable_characters rule checks that the value can only contain printable characters' do
-    FooClass.validates(:bar, string_format: { rules: [:has_only_printable_characters] })
+  test ':only_printable_characters rule checks that the value can only contain printable characters' do
+    FooClass.validates(:bar, string_format: { rules: [:only_printable_characters] })
     foo = FooClass.new("\x0A")
     foo.validate
     assert_includes foo.errors[:bar], 'can only contain printable characters'

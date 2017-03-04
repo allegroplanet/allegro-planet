@@ -3,7 +3,7 @@ class GameRelease < ApplicationRecord
     presence: true,
     uniqueness: { scope: :game, message: 'already exists' },
     allow_blank: false,
-    string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters] }
+    string_format: { rules: [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters] }
 
   belongs_to :game
 

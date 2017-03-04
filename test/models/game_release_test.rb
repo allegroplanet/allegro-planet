@@ -39,7 +39,7 @@ class GameReleaseTest < ActiveSupport::TestCase
   end
 
   test 'version_num is formatted with the expected rules' do
-    expected_validation_rules = [:starts_with_non_whitespace, :ends_with_non_whitespace, :has_only_printable_characters]
+    expected_validation_rules = [:starts_with_non_whitespace, :ends_with_non_whitespace, :only_printable_characters]
     assert_validates_format_rules expected_validation_rules, GameRelease, :version_num
   end
 
