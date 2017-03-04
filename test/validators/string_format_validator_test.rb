@@ -27,6 +27,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       :ends_with_non_whitespace,
       :only_printable_characters,
       :only_printable_characters_and_newlines,
+      :email,
     ]
     existing_rules = StringFormatValidator::VALIDATIONS.keys
     assert_equal expected_rules, existing_rules
@@ -70,5 +71,17 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       foo.validate
       assert_includes foo.errors[:bar], 'can only contain printable characters and newlines', foo.bar
     end
+  end
+
+  test ':email rule checks that the value is a valid email format' do
+    FooClass.validates(:bar, string_format: { rules: [:email] })
+
+    foo = FooClass.new("not-a-valid-email")
+    foo.validate
+    assert_includes foo.errors[:bar], 'must be a valid email'
+
+    foo = FooClass.new("valid.email@gmail.com")
+    foo.validate
+    refute_includes foo.errors[:bar], 'must be a valid email'
   end
 end
