@@ -12,7 +12,7 @@ class MarkdownConverter
   private
 
   def converter
-    @converter ||= Redcarpet::Markdown.new(renderer)
+    @converter ||= Redcarpet::Markdown.new(renderer, autolink: true)
   end
 
   def renderer
