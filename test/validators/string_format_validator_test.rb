@@ -9,6 +9,10 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     end
   end
 
+  def teardown
+    FooClass.clear_validators!
+  end
+
   test 'contains the expected set of validation rules' do
     expected_rules = [
       :starts_with_non_whitespace,
