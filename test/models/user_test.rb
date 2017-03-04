@@ -87,7 +87,7 @@ class UserTest < ActiveSupport::TestCase
   test 'with a password less than 8 characters, is invalid' do
     user.password = 'pw2shrt'
     user.save
-    assert_includes user.errors[:password], 'must have 8 or more characters'
+    assert_includes user.errors[:password], 'is too short (minimum is 8 characters)'
   end
 
   test 'with a password that starts with whitespace, is invalid' do
