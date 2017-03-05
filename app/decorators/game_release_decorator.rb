@@ -8,11 +8,7 @@ class GameReleaseDecorator
   end
 
   def game_files
-    @game_files ||= @game_release.game_files.each.collect do |release|
-      {
-        category: release.category,
-        url:      "https://#{Figaro.env.aws_allegro_planet_bucket}.s3.amazonaws.com/#{release.file.path}"
-      }
+    @game_files ||= @game_release.game_files.each.collect do |f| { category: f.category, public_url: f.public_url }
     end
   end
 

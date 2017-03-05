@@ -19,7 +19,7 @@
     <div>
       <ul>
       <% release.game_files.each do |game_file| %>
-        <li><%= link_to(game_file[:category], game_file[:url]) %></li>
+        <li><%= link_to(game_file[:category], game_file[:public_url]) %></li>
       <% end %>
       </ul>
     </div>

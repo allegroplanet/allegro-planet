@@ -46,4 +46,10 @@ class GameFileTest < ActiveSupport::TestCase
   test 'has the expected category error message' do
     assert_equal GameFile::INCLUSION_MESSAGE, "must be one of #{GameFile::GAME_FILE_CATEGORIES}"
   end
+
+  test '#public_url returns the expected url' do
+    returned_url = game_files(:win_32_binary).public_url
+    expected_url = "https://test-buhkit.s3.amazonaws.com/game-files/alex-v1-win32.zip"
+    assert_equal expected_url, returned_url
+  end
 end
