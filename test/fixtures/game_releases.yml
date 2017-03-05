@@ -1,9 +1,9 @@
-release_1:
+alex_release_v1:
   version_num: v0.0.1
   notes: Initial release!
   game: alex_adventures
 
-release_2:
+super_biker_release_v2:
   version_num: v0.0.2
   notes: Fixed problems with display
   game: super_biker

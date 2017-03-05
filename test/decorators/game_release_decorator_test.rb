@@ -6,7 +6,7 @@ class GameReleaseDecoratorTest < ActiveSupport::TestCase
   end
 
   test '#version_num returns the expected version number' do
-    version_num = decorated_release(:release_1).version_num
+    version_num = decorated_release(:alex_release_v1).version_num
     assert_equal 'v0.0.1', version_num
   end
 
@@ -15,7 +15,7 @@ class GameReleaseDecoratorTest < ActiveSupport::TestCase
   end
 
   test '#notes returns the markdown release notes formated as HTML' do
-    release_notes = decorated_release(:release_2).notes
+    release_notes = decorated_release(:super_biker_release_v2).notes
     assert_equal "<p>Fixed problems with display</p>\n", release_notes
   end
 end

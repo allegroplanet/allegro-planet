@@ -9,7 +9,7 @@ class GameFileTest < ActiveSupport::TestCase
     @game_file ||= GameFile.new({
       file: 'filename.zip',
       category: 'Source files',
-      game_release: game_releases(:release_1)
+      game_release: game_releases(:super_biker_release_v2)
     })
   end
 
