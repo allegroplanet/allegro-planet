@@ -13,8 +13,8 @@ class GameReleaseDecoratorTest < ActiveSupport::TestCase
   test '#game_files returns the files associated with the game release' do
     returned_game_files = decorated_release(:alex_release_v1).game_files
     expected_game_files = [
-      { category: "Win binary", url: 'https://test-buhkit.s3.amazonaws.com/game-files/alex-v1-win32.zip' },
-      { category: "MacOS binary", url: 'https://test-buhkit.s3.amazonaws.com/game-files/alex-v1-macos.zip' },
+      { category: "Win binary", public_url: 'https://test-buhkit.s3.amazonaws.com/game-files/alex-v1-win32.zip' },
+      { category: "MacOS binary", public_url: 'https://test-buhkit.s3.amazonaws.com/game-files/alex-v1-macos.zip' },
     ]
 
     assert_equal expected_game_files, returned_game_files
