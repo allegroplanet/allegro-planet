@@ -6,7 +6,7 @@ class MarkdownConverter
   end
 
   def html
-    converter.render(@markdown)
+    @html ||= converter.render(@markdown)
   end
 
   private
