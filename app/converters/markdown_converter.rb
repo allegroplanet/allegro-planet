@@ -6,7 +6,7 @@ class MarkdownConverter
   end
 
   def html
-    @html ||= converter.render(@markdown).html_safe
+    @html ||= @markdown.present? ? converter.render(@markdown).html_safe : ''
   end
 
   private
