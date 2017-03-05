@@ -8,11 +8,7 @@ class GameReleaseDecorator
   end
 
   def game_files
-    @game_files ||= @game_release.game_files.each.collect do |game_file|
-      {
-        category: game_file.category,
-        url:      game_file.public_url,
-      }
+    @game_files ||= @game_release.game_files.each.collect do |f| { category: f.category, url: f.public_url }
     end
   end
 
