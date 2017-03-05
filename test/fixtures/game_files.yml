@@ -1,0 +1,9 @@
+win_32_binary:
+  category: Win binary
+  file: alex-v1-win32.zip
+  game_release: alex_release_v1
+
+macos_binary:
+  category: MacOS binary
+  file: alex-v1-macos.zip
+  game_release: alex_release_v1

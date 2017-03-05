@@ -25,6 +25,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_template :new
   end
 
+  test 'GET #show responds with the user description in HTML' do
+    get user_path(users(:markoates))
+    assert_match '<p>I like cats <strong>and</strong> noodles!</p>', response.body
+  end
+
   test 'POST #create redirects to the user page successfuly' do
     valid_new_user_params = {
       username: 'Joe Valid',

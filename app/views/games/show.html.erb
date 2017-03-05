@@ -1,7 +1,7 @@
 <h1><%= @game.title %></h1>
 
 <h3>Description</h3>
-<div><%= @game.description %></div>
+<div><%= @description %></div>
 
 <h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
 <div>
@@ -14,10 +14,14 @@
 <div>
   <% @releases.each do |release| %>
     <h4><%= release.version_num %></h4>
-    <ul>
-    <% release.game_files.each do |game_file| %>
-      <li><%= link_to(game_file.category, game_file.file.url) %></li>
-    <% end %>
-    </ul>
+    <div><%= release.notes %></div>
+    <h5>Files</h5>
+    <div>
+      <ul>
+      <% release.game_files.each do |game_file| %>
+        <li><%= link_to(game_file[:category], game_file[:url]) %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>
