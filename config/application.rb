@@ -13,6 +13,7 @@ module AllegroPlanet
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths += [
       "#{config.root}/app/converters",
+      "#{config.root}/app/decorators",
     ]
   end
 end
