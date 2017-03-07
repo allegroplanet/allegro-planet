@@ -16,6 +16,6 @@ class MarkdownConverter
   end
 
   def renderer
-    @renderer ||= Redcarpet::Render::HTML
+    @renderer ||= Redcarpet::Render::HTML.new(escape_html: true)
   end
 end

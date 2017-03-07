@@ -23,4 +23,13 @@ class MarkdownConverterTest < ActiveSupport::TestCase
 
     assert_equal expected_html, returned_html
   end
+
+  test '#html safely escapes HTML characters and does not generate inline HTML' do
+    markdown_with_inline_html = "<script>alert('haxed');</script>"
+    returned_html = MarkdownConverter.new(markdown_with_inline_html).html
+    expected_escaped_html = "<p>&lt;script&gt;alert(&#39;haxed&#39;);&lt;/script&gt;</p>"
+
+    refute_match markdown_with_inline_html, returned_html
+    assert_match expected_escaped_html, returned_html
+ end
 end
