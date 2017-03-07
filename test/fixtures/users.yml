@@ -6,3 +6,4 @@ markoates:
   last_name: Oates
   website: www.example.com
   description: I like cats __and__ noodles!
+  password_digest: FaK3_pa5sw0rd_D1G3S+

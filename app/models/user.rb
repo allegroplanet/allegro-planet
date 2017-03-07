@@ -23,7 +23,8 @@ class User < ApplicationRecord
 
   validates :password,
     length: { minimum: 8 },
-    string_format: { rules: [:only_printable_characters, :starts_with_non_whitespace, :ends_with_non_whitespace] }
+    string_format: { rules: [:only_printable_characters, :starts_with_non_whitespace, :ends_with_non_whitespace] },
+    allow_nil: true
 
   has_and_belongs_to_many :games
 

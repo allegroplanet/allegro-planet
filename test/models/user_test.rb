@@ -121,6 +121,11 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.errors[:password], 'can only contain printable characters'
   end
 
+  test 'a password on an exiting user does not require re-validation' do
+    user_from_database = users(:markoates)
+    assert user_from_database.validate
+  end
+
   test 'generates a handle on validation' do
     user.validate
     assert_equal user.handle, 'mr-test'
