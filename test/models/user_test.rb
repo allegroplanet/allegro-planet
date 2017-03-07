@@ -97,6 +97,12 @@ class UserTest < ActiveSupport::TestCase
     assert_includes user.email, 'jumblecase@email.com'
   end
 
+  test 'password must be present on creation' do
+    User.destroy_all
+    user.password = nil
+    refute user.save
+  end
+
   test 'with a password less than 8 characters, is invalid' do
     user.password = 'pw2shrt'
     user.validate
@@ -119,6 +125,11 @@ class UserTest < ActiveSupport::TestCase
     user.password = "\0x07"
     user.validate
     assert_includes user.errors[:password], 'can only contain printable characters'
+  end
+
+  test 'a password on an exiting user does not require re-validation' do
+    user_from_database = users(:markoates)
+    assert user_from_database.validate
   end
 
   test 'generates a handle on validation' do
