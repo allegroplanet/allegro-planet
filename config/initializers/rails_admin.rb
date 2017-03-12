@@ -58,6 +58,7 @@ RailsAdmin.config do |config|
       configure :handle do
         read_only true
         help 'Generated automatically.'
+        visible { bindings[:object].id.present? }
       end
     end
   end
