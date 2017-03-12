@@ -57,6 +57,7 @@ RailsAdmin.config do |config|
         :updated_at
       configure :handle do
         read_only true
+        help 'Generated automatically.'
       end
     end
   end
