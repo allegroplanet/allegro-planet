@@ -71,6 +71,16 @@ RailsAdmin.config do |config|
     end
   end
 
+  # GameFile
+
+  config.model 'GameFile' do
+    configure :category, :enum do
+      enum do
+        GameFile::GAME_FILE_CATEGORIES.each.collect { |element| [element] }
+      end
+    end
+  end
+
   def game_release_label_method
     "#{self.game.handle}-#{self.version_num}"
   end
