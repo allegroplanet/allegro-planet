@@ -12,6 +12,10 @@ gem 'figaro', '~> 1.1.1'
 gem 'rails_admin', '~> 1.1.1'
 gem 'redcarpet'
 
+# bootstrap
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
