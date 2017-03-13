@@ -39,6 +39,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (6.7.7)
+      execjs
     aws-sdk (2.7.14)
       aws-sdk-resources (= 2.7.14)
     aws-sdk-core (2.7.14)
@@ -48,6 +50,8 @@ GEM
       aws-sdk-core (= 2.7.14)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (9.0.6)
     carrierwave (1.0.0)
@@ -212,7 +216,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   bcrypt (~> 3.1.7)
+  bootstrap-sass (~> 3.2.0)
   byebug
   carrierwave (~> 1.0)
   carrierwave-aws
