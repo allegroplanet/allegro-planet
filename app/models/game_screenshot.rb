@@ -3,7 +3,9 @@ class GameScreenshot < ApplicationRecord
 
   belongs_to :game
 
-  def public_url
-    "https://#{Figaro.env.aws_allegro_planet_bucket}.s3.amazonaws.com/#{image.path}"
+  private
+
+  def public_url(image_path)
+    "https://#{Figaro.env.aws_allegro_planet_bucket}.s3.amazonaws.com/#{image_path}"
   end
 end
