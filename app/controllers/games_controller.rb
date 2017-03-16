@@ -6,7 +6,13 @@ class GamesController < ApplicationController
   def show
     @game = Game.find_by(handle: params[:handle]) or record_not_found
     @description = MarkdownConverter.new(@game.description).html
-    @screenshot_urls = @game.game_screenshots.collect { |s| s.public_url }
+    @feature_screenshot_urls = feature_screenshot_urls
     @releases = @game.game_releases.collect { |r| GameReleaseDecorator.new(r) }
+  end
+
+  def feature_screenshot_urls
+    @screenshot_urls ||= @game.game_screenshots.collect do |s|
+      s.feature_public_url
+    end
   end
 end
