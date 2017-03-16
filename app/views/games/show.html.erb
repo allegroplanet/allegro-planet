@@ -5,8 +5,8 @@
 
 <h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
 <div>
-  <% @screenshot_urls.each do |screenshot_url| %>
-    <%= image_tag(screenshot_url) %>
+  <% @feature_screenshot_urls.each do |feature_screenshot_url| %>
+    <%= image_tag(feature_screenshot_url) %>
   <% end %>
 </div>
 
