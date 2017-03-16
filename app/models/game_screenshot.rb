@@ -3,6 +3,18 @@ class GameScreenshot < ApplicationRecord
 
   belongs_to :game
 
+  def feature_public_url
+    public_url(image.feature.path)
+  end
+
+  def thumb_public_url
+    public_url(image.thumb.path)
+  end
+
+  def tile_public_url
+    public_url(image.tile.path)
+  end
+
   private
 
   def public_url(image_path)
