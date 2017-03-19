@@ -2,4 +2,10 @@
   <h1><%= @user.username %></h1>
   <p>description: <%= @description %></p>
   <p>website: <%= @user.website %></p>
+  <h2>Games</h2>
+  <ul>
+    <% @games.each do |game| %>
+      <li><%= link_to(game.title, game) %></li>
+    <% end %>
+  </ul>
 </div>

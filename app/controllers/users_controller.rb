@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(handle: params[:handle]) or record_not_found
     @description = MarkdownConverter.new(@user.description).html
+    @games = @user.games
   end
 
   def new
