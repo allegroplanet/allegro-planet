@@ -9,11 +9,7 @@
 
 <div class="row">
   <h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
-  <div>
-    <% @feature_screenshot_urls.each do |feature_screenshot_url| %>
-      <%= image_tag(feature_screenshot_url) %>
-    <% end %>
-  </div>
+  <%= render 'shared/flickity', image_urls: @feature_screenshot_urls %>
 </div>
 
 <div class="row">
