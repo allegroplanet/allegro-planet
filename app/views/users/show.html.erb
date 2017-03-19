@@ -1,11 +1,22 @@
-<div class="center box1">
+<div class="row">
   <h1><%= @user.username %></h1>
-  <p>first_name: <%= @user.first_name %></p>
-  <p>last_name: <%= @user.last_name %></p>
-  <p>username: <%= @user.first_name %></p>
-  <p>id: <%= @user.id %></p>
-  <hr>
-  <p>description: <%= @description %></p>
-  <p>website: <%= @user.website %></p>
-  <p>email: <%= @user.email %></p>
+  <% if @description.present? %>
+  <h2>About</h2>
+    <div>
+      <%= @description %>
+    </div>
+  <% end %>
+  <% if @user.website.present? %>
+    <p>website: <%= @user.website %></p>
+  <% end %>
+  <h2>Games</h2>
+  <% if @games.present? %>
+    <ul>
+      <% @games.each do |game| %>
+        <li><%= link_to(game.title, game) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>The user has no games.</p>
+  <% end %>
 </div>
