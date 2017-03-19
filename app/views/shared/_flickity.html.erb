@@ -1,0 +1,7 @@
+<div class="carousel-wrapper">
+  <div class="carousel" data-flickity='{ "imagesLoaded": true, "autoPlay": true, "wrapAround": true }'>
+    <% image_urls.each do |image_url| %>
+      <div class="carousel-cell"><%= image_tag(image_url) %></div>
+    <% end %>
+  </div>
+</div>
