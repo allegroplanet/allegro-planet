@@ -1,27 +1,35 @@
-<h1><%= @game.title %></h1>
-
-<h3>Description</h3>
-<div><%= @description %></div>
-
-<h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
-<div>
-  <% @feature_screenshot_urls.each do |feature_screenshot_url| %>
-    <%= image_tag(feature_screenshot_url) %>
-  <% end %>
+<div class="row">
+  <h1><%= @game.title %></h1>
 </div>
 
-<h3>Releases (<%= @releases.count %>)</h3>
-<div>
-  <% @releases.each do |release| %>
-    <h4><%= release.version_num %></h4>
-    <div><%= release.notes %></div>
-    <h5>Files</h5>
-    <div>
-      <ul>
-      <% release.game_files.each do |game_file| %>
-        <li><%= link_to(game_file[:category], game_file[:public_url]) %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row">
+  <h3>Description</h3>
+  <div><%= @description %></div>
+</div>
+
+<div class="row">
+  <h3>Screenshots (<%= @game.game_screenshots.count %>)</h3>
+  <div>
+    <% @feature_screenshot_urls.each do |feature_screenshot_url| %>
+      <%= image_tag(feature_screenshot_url) %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <h3>Releases (<%= @releases.count %>)</h3>
+  <div>
+    <% @releases.each do |release| %>
+      <h4><%= release.version_num %></h4>
+      <div><%= release.notes %></div>
+      <h5>Files</h5>
+      <div>
+        <ul>
+        <% release.game_files.each do |game_file| %>
+          <li><%= link_to(game_file[:category], game_file[:public_url]) %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </div>
