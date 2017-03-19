@@ -1,14 +1,22 @@
 <div class="row">
   <h1><%= @user.username %></h1>
+  <% if @description.present? %>
   <h2>About</h2>
-  <div>
-    <%= @description %>
-  </div>
-  <p>website: <%= @user.website %></p>
+    <div>
+      <%= @description %>
+    </div>
+  <% end %>
+  <% if @user.website.present? %>
+    <p>website: <%= @user.website %></p>
+  <% end %>
   <h2>Games</h2>
-  <ul>
-    <% @games.each do |game| %>
-      <li><%= link_to(game.title, game) %></li>
-    <% end %>
-  </ul>
+  <% if @games.present? %>
+    <ul>
+      <% @games.each do |game| %>
+        <li><%= link_to(game.title, game) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>The user has no games.</p>
+  <% end %>
 </div>
