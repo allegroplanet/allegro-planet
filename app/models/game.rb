@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  include ElasticsearchGameConfiguration
+
   before_validation :generate_handle
 
   has_many :game_screenshots
