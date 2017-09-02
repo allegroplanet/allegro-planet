@@ -4,11 +4,11 @@ class GameFile < ApplicationRecord
 
   mount_uploader :file, GameFileUploader
 
+  belongs_to :game_release
+
   validates :category,
     presence: { message: INCLUSION_MESSAGE },
     inclusion: { in: GAME_FILE_CATEGORIES, message: INCLUSION_MESSAGE }
-
-  belongs_to :game_release
 
   def public_url
     "https://#{Figaro.env.aws_allegro_planet_bucket}.s3.amazonaws.com/#{file.path}"
