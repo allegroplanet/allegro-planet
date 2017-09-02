@@ -1,1 +1,1 @@
-Elasticsearch::Model.client = Elasticsearch::Client.new url: ENV['BONSAI_URL']
+Elasticsearch::Model.client = Elasticsearch::Client.new url: (Rails.env.production? ? ENV['BONSAI_URL'] : 'http://localhost:9200')
