@@ -17,7 +17,7 @@ class Searcher
   private
 
   def sanitized_query
-    query.gsub(/[^0-9a-z ]/i, '')
+    query.gsub(/[^0-9a-z ]/i, '') unless query.nil?
   end
 
   def elasticsearch_result

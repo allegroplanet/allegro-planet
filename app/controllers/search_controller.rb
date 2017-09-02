@@ -8,6 +8,10 @@ class SearchController < ApplicationController
   private
 
   def query_param
-    params['q']
+    permitted_params[:q]
+  end
+
+  def permitted_params
+    params.permit(:q)
   end
 end
