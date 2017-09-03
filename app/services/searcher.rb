@@ -2,7 +2,7 @@ class Searcher
   attr_reader :query, :limit
 
   def initialize(query, limit: 50)
-    @query = query
+    @query = query.to_s
     @limit = limit
   end
 
