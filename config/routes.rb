@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'welcome#index'
 
+  get '/search', to: 'search#index', param: :q
+
   resources :games, param: :handle, only: [:index, :show]
 
   resources :users, param: :handle, only: [:show]

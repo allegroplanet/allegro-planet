@@ -5,28 +5,25 @@ class User < ApplicationRecord
 
   before_validation :generate_handle
 
+  has_and_belongs_to_many :games
+
   validates :username,
     presence: true,
     length: { maximum: 24, minimum: 2 },
     uniqueness: { case_sensitive: false },
     string_format: { rules: [:username_characters, :starts_with_non_whitespace, :ends_with_non_whitespace, :at_least_one_alphanumeric_character] }
-
   validates :email,
     presence: true,
     length: { maximum: 255 },
     string_format: { rules: [:email] },
     uniqueness: { case_sensitive: false }
-
   validates :handle,
     presence: true,
     uniqueness: true
-
   validates :password,
     length: { minimum: 8 },
     string_format: { rules: [:only_printable_characters, :starts_with_non_whitespace, :ends_with_non_whitespace] },
     allow_nil: true
-
-  has_and_belongs_to_many :games
 
   def to_param
     handle
