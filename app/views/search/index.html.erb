@@ -2,6 +2,6 @@
 
 <ul>
 <% @search_results.each do |search_result| %>
-  <li><%= link_to url_for(search_result) %></li>
+  <li><%= link_to search_result.title, url_for(search_result) %></li>
 <% end %>
 </ul>
