@@ -1,4 +1,6 @@
 class GithubWebhooksController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     GithubWebhook.create!(event: github_event_header, payload_json: payload_param)
     render json: { success: true }
