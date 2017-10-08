@@ -1,0 +1,2 @@
+class GithubWebhook < ApplicationRecord
+end
