@@ -21,7 +21,7 @@ class GithubWebhooksController < ApplicationController
   end
 
   def payload_param
-    params[:payload]
+    request.raw_post
   end
 
   def github_event_header
