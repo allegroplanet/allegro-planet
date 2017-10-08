@@ -22,6 +22,16 @@ class GithubWebhooksControllerTest < ActionDispatch::IntegrationTest
     assert_equal payload, GithubWebhook.first.payload_json
   end
 
+  test 'GET #show is successful' do
+    get github_webhook_path(github_webhook)
+    assert_response :success
+  end
+
+  test 'GET #show renders the "show" template' do
+    get github_webhook_path(github_webhook)
+    assert_template :show
+  end
+
   test 'GET #index is successful' do
     get github_webhooks_path(github_webhook)
     assert_response :success

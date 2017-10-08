@@ -1,0 +1,11 @@
+<div class="row">
+  <h1>Github Webhook</h1>
+</div>
+
+<div class="row">
+  <div>
+    <h4><%= @webhook.event %></h4>
+    <p><%= @webhook.created_at %></p>
+    <pre><%= @webhook.payload_json %></pre>
+  </div>
+</div>

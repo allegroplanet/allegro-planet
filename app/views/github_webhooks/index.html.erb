@@ -6,7 +6,7 @@
   <div>
     <ul>
     <% @webhooks.each do |webhook| %>
-      <li><%= webhook.event %> : <%= webhook.created_at %><pre><%= webhook.payload_json %></pre><li>
+      <li><%= webhook.id %> &bull; <%= webhook.event %> &bull; <%= webhook.created_at %></li>
     <% end %>
     </ul>
   </div>

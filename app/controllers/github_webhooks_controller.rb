@@ -10,7 +10,15 @@ class GithubWebhooksController < ApplicationController
     @webhooks = GithubWebhook.order(created_at: :desc)
   end
 
+  def show
+    @webhook = GithubWebhook.find(id_param)
+  end
+
   private
+
+  def id_param
+    params[:id]
+  end
 
   def payload_param
     params[:payload]
