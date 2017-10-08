@@ -15,10 +15,4 @@ class GithubWebhookTest < ActiveSupport::TestCase
     github_webhook.validate
     assert_includes github_webhook.errors[:event], 'is too long (maximum is 32 characters)'
   end
-
-  test 'with a payload_json larger than 512 characters, is invalid' do
-    github_webhook.payload_json = 'x' * 516
-    github_webhook.validate
-    assert_includes github_webhook.errors[:payload_json], 'is too long (maximum is 512 characters)'
-  end
 end
