@@ -10,65 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302064617) do
+ActiveRecord::Schema.define(version: 20171008153311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "game_files", force: :cascade do |t|
-    t.string   "file"
-    t.string   "category"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "game_release_id"
-    t.index ["game_release_id"], name: "index_game_files_on_game_release_id", using: :btree
-  end
-
-  create_table "game_releases", force: :cascade do |t|
-    t.string   "version_num"
-    t.text     "notes"
-    t.integer  "game_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["game_id"], name: "index_game_releases_on_game_id", using: :btree
-  end
-
-  create_table "game_screenshots", force: :cascade do |t|
-    t.string   "image"
-    t.integer  "game_id"
+  create_table "game_files", id: :serial, force: :cascade do |t|
+    t.string "file"
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_game_screenshots_on_game_id", using: :btree
+    t.integer "game_release_id"
+    t.index ["game_release_id"], name: "index_game_files_on_game_release_id"
   end
 
-  create_table "games", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "handle"
-    t.index ["handle"], name: "index_games_on_handle", using: :btree
+  create_table "game_releases", id: :serial, force: :cascade do |t|
+    t.string "version_num"
+    t.text "notes"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_releases_on_game_id"
+  end
+
+  create_table "game_screenshots", id: :serial, force: :cascade do |t|
+    t.string "image"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_screenshots_on_game_id"
+  end
+
+  create_table "games", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "handle"
+    t.index ["handle"], name: "index_games_on_handle"
   end
 
   create_table "games_users", id: false, force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
-    t.index ["game_id"], name: "index_games_users_on_game_id", using: :btree
-    t.index ["user_id"], name: "index_games_users_on_user_id", using: :btree
+    t.index ["game_id"], name: "index_games_users_on_game_id"
+    t.index ["user_id"], name: "index_games_users_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "website"
-    t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "password_digest"
-    t.string   "handle"
-    t.index ["handle"], name: "index_users_on_handle", using: :btree
+  create_table "github_webhooks", force: :cascade do |t|
+    t.string "event"
+    t.text "payload_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "website"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "handle"
+    t.index ["handle"], name: "index_users_on_handle"
   end
 
   add_foreign_key "game_releases", "games"

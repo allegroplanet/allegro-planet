@@ -1,0 +1,3 @@
+new_pull_request:
+  event: pull-request
+  payload_json: '{ "status": "200" }'
