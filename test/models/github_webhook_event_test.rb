@@ -15,4 +15,8 @@ class GithubWebhookEventTest < ActiveSupport::TestCase
     github_webhook_event.validate
     assert_includes github_webhook_event.errors[:event], 'is too long (maximum is 32 characters)'
   end
+
+  test 'belongs_to a github_webhook' do
+    assert_association GithubWebhookEvent, :belongs_to, :github_webhook
+  end
 end
