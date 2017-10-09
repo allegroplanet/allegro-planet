@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009051522) do
+ActiveRecord::Schema.define(version: 20171009074248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20171009051522) do
     t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_github_webhooks_on_game_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -89,4 +91,5 @@ ActiveRecord::Schema.define(version: 20171009051522) do
   add_foreign_key "game_releases", "games"
   add_foreign_key "game_screenshots", "games"
   add_foreign_key "github_webhook_events", "github_webhooks"
+  add_foreign_key "github_webhooks", "games"
 end
