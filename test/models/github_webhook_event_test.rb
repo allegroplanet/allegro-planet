@@ -2,7 +2,11 @@ require 'test_helper'
 
 class GithubWebhookEventTest < ActiveSupport::TestCase
   def github_webhook_event
-    @github_webhook_event ||= GithubWebhookEvent.new(event: 'pull-request', payload_json: '{ "status": "200" }')
+    @github_webhook_event ||= GithubWebhookEvent.new(
+      github_webhook: github_webhooks(:star_gator),
+      event: 'pull-request',
+      payload_json: '{ "status": "200" }'
+    )
   end
 
   test 'validates without errors' do
