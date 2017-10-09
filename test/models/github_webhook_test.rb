@@ -16,8 +16,8 @@ class GithubWebhookTest < ActiveSupport::TestCase
     refute github_webhook.uuid.nil?
   end
 
-  test 'has many github_webhook_events' do
-    assert_association GithubWebhook, :has_many, :github_webhook_events
+  test 'has many github webhook events as "events"' do
+    assert_association GithubWebhook, :has_many, :events
   end
 
   test 'uuid is formatted with the expected rules' do

@@ -1,7 +1,7 @@
 class GithubWebhook < ApplicationRecord
   before_validation :generate_uuid
 
-  has_many :github_webhook_events
+  has_many :events, class_name: GithubWebhookEvent.to_s
 
   validates :uuid,
     string_format: { rules: [:uuid] }
