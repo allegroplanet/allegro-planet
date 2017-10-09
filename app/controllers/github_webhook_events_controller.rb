@@ -2,8 +2,10 @@ class GithubWebhookEventsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    github_webhook = GithubWebhook.find_by(uuid: uuid_param)
+    github_webhook = GithubWebhook.find_by(uuid: github_webhook_uuid_param)
+
     GithubWebhookEvent.create!(github_webhook: github_webhook, event: github_event_header, payload_json: payload_param)
+
     render json: { success: true }
   end
 
@@ -17,8 +19,8 @@ class GithubWebhookEventsController < ApplicationController
 
   private
 
-  def uuid_param
-    params[:uuid]
+  def github_webhook_uuid_param
+    params[:github_webhook_uuid]
   end
 
   def id_param
