@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009035933) do
+ActiveRecord::Schema.define(version: 20171009042741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(version: 20171009035933) do
   create_table "github_webhook_events", force: :cascade do |t|
     t.string "event"
     t.text "payload_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "github_webhooks", force: :cascade do |t|
+    t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
