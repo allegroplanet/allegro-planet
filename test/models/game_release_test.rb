@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class GameReleaseTest < ActiveSupport::TestCase
-  def game_release_associations(association_type, property)
-    GameRelease.reflect_on_all_associations(association_type).select { |a| a.name == property }
-  end
-
   def game_release
     @game_release ||= GameRelease.new({
       version_num: 'v0.2.1',
@@ -44,8 +40,7 @@ class GameReleaseTest < ActiveSupport::TestCase
   end
 
   test 'belongs to a game' do
-    associations = game_release_associations(:belongs_to, :game)
-    assert associations.one?
+    assert_association GameRelease, :belongs_to, :game
   end
 
   test 'without a game, is invalid' do
@@ -54,8 +49,7 @@ class GameReleaseTest < ActiveSupport::TestCase
     assert_includes game_release.errors[:game], 'must exist'
   end
 
-  test 'has_many to a game_files' do
-    associations = game_release_associations(:has_many, :game_files)
-    assert associations.one?
+  test 'has_many game files' do
+    assert_association GameRelease, :has_many, :game_files
   end
 end
