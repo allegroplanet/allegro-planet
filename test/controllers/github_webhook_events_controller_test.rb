@@ -51,6 +51,12 @@ class GithubWebhookEventsControllerTest < ActionDispatch::IntegrationTest
     assert_template :show
   end
 
+  test 'GET #show with a missmatching game and webhook, raises an exception' do
+    assert_raise ArgumentError do
+      get game_github_webhook_github_webhook_event_path(games(:alex_adventures), github_webhooks(:star_gator), github_webhook_event)
+    end
+  end
+
   test 'GET #index is successful' do
     get game_github_webhook_github_webhook_events_path(game, github_webhooks(:star_gator))
     assert_response :success
@@ -59,5 +65,11 @@ class GithubWebhookEventsControllerTest < ActionDispatch::IntegrationTest
   test 'GET #index renders the "index" template' do
     get game_github_webhook_github_webhook_events_path(game, github_webhooks(:star_gator))
     assert_template :index
+  end
+
+  test 'GET #index with a missmatching game and webhook, raises an exception' do
+    assert_raise ArgumentError do
+      get game_github_webhook_github_webhook_events_path(games(:alex_adventures), github_webhooks(:star_gator))
+    end
   end
 end

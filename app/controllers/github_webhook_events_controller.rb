@@ -8,11 +8,13 @@ class GithubWebhookEventsController < ApplicationController
   end
 
   def index
-    @webhooks = GithubWebhookEvent.order(created_at: :desc)
+    validate_nested_elements
+    @webhooks = github_webhook.events.order(created_at: :desc)
   end
 
   def show
-    @webhook = GithubWebhookEvent.find(id_param)
+    validate_nested_elements
+    @webhook = github_webhook.events.find(id_param)
   end
 
   private
