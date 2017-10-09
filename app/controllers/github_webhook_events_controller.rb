@@ -3,6 +3,7 @@ class GithubWebhookEventsController < ApplicationController
 
   def create
     github_webhook = GithubWebhook.find_by(uuid: github_webhook_uuid_param)
+    game = Game.find_by!(handle: game_handle_param)
 
     GithubWebhookEvent.create!(github_webhook: github_webhook, event: github_event_header, payload_json: payload_param)
 
@@ -18,6 +19,10 @@ class GithubWebhookEventsController < ApplicationController
   end
 
   private
+
+  def game_handle_param
+    params[:game_handle]
+  end
 
   def github_webhook_uuid_param
     params[:github_webhook_uuid]
