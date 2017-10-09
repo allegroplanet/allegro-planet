@@ -1,3 +1,4 @@
 new_pull_request:
+  github_webhook: star_gator
   event: pull-request
   payload_json: '{ "status": "200" }'
