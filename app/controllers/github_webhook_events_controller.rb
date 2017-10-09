@@ -2,15 +2,8 @@ class GithubWebhookEventsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    github_webhook = GithubWebhook.find_by!(uuid: github_webhook_uuid_param)
-    game = Game.find_by!(handle: game_handle_param)
-
-    unless github_webhook.game.eql?(game)
-      raise ArgumentError, "There is no webhook #{github_webhook_uuid_param} for the game #{game_handle_param}"
-    end
-
+    validate_nested_elements
     GithubWebhookEvent.create!(github_webhook: github_webhook, event: github_event_header, payload_json: payload_param)
-
     render json: { success: true }
   end
 
@@ -23,6 +16,20 @@ class GithubWebhookEventsController < ApplicationController
   end
 
   private
+
+  def validate_nested_elements
+    unless github_webhook.game.eql?(game)
+      raise ArgumentError, "There is no webhook #{github_webhook_uuid_param} for the game #{game_handle_param}"
+    end
+  end
+
+  def github_webhook
+    @github_webhook ||= GithubWebhook.find_by!(uuid: github_webhook_uuid_param)
+  end
+
+  def game
+    @game ||= Game.find_by!(handle: game_handle_param)
+  end
 
   def game_handle_param
     params[:game_handle]
