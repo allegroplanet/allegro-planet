@@ -2,7 +2,7 @@ class GithubWebhookEventsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    github_webhook = GithubWebhook.find_by(uuid: github_webhook_uuid_param)
+    github_webhook = GithubWebhook.find_by!(uuid: github_webhook_uuid_param)
     game = Game.find_by!(handle: game_handle_param)
 
     unless github_webhook.game.eql?(game)
