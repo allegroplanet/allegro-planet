@@ -2,3 +2,7 @@ new_pull_request:
   github_webhook: star_gator
   event: pull-request
   payload_json: '{ "status": "200" }'
+alex_adventures_pull_request:
+  github_webhook: alex_adventures
+  event: pull-request
+  payload_json: '{ "status": "200" }'

@@ -1,2 +1,6 @@
 star_gator:
   uuid: 94e4f0ef-e0e3-45c7-ae62-6cb35f21ebad
+  game: star_gator
+alex_adventures:
+  uuid: 62b97cb5-1c4a-41f0-b5a4-ac4da2d86eee
+  game: alex_adventures
