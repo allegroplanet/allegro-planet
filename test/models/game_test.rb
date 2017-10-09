@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
-  def game_associations(association_type, property)
-    Game.reflect_on_all_associations(association_type).select { |a| a.name == property }
-  end
-
   def game
     @game ||= Game.new(title: 'Game Title', description: 'The best game ever.')
   end
@@ -67,17 +63,18 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test 'has many game screenshots' do
-    associations = game_associations(:has_many, :game_screenshots)
-    assert associations.one?
+    assert_association Game, :has_many, :game_screenshots
   end
 
   test 'has many game releases' do
-    associations = game_associations(:has_many, :game_releases)
-    assert associations.one?
+    assert_association Game, :has_many, :game_releases
+  end
+
+  test 'has one github webhook' do
+    assert_association Game, :has_one, :github_webhook
   end
 
   test 'has and belongs to many users' do
-    associations = game_associations(:has_and_belongs_to_many, :users)
-    assert associations.one?
+    assert_association Game, :has_and_belongs_to_many, :users
   end
 end

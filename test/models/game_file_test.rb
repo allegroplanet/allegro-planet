@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class GameFileTest < ActiveSupport::TestCase
-  def game_file_associations(association_type, property)
-    GameFile.reflect_on_all_associations(association_type).select { |a| a.name == property }
-  end
-
   def game_file
     @game_file ||= GameFile.new({
       file: 'filename.zip',
@@ -39,8 +35,7 @@ class GameFileTest < ActiveSupport::TestCase
   end
 
   test 'belongs_to to a game_release' do
-    associations = game_file_associations(:belongs_to, :game_release)
-    assert associations.one?
+    assert_association GameFile, :belongs_to, :game_release
   end
 
   test 'has the expected category error message' do

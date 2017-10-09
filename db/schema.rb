@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008153311) do
+ActiveRecord::Schema.define(version: 20171009074248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,21 @@ ActiveRecord::Schema.define(version: 20171008153311) do
     t.index ["user_id"], name: "index_games_users_on_user_id"
   end
 
-  create_table "github_webhooks", force: :cascade do |t|
+  create_table "github_webhook_events", force: :cascade do |t|
     t.string "event"
     t.text "payload_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "github_webhook_id"
+    t.index ["github_webhook_id"], name: "index_github_webhook_events_on_github_webhook_id"
+  end
+
+  create_table "github_webhooks", force: :cascade do |t|
+    t.string "uuid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_github_webhooks_on_game_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -80,4 +90,6 @@ ActiveRecord::Schema.define(version: 20171008153311) do
 
   add_foreign_key "game_releases", "games"
   add_foreign_key "game_screenshots", "games"
+  add_foreign_key "github_webhook_events", "github_webhooks"
+  add_foreign_key "github_webhooks", "games"
 end

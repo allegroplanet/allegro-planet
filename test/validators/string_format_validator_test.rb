@@ -28,6 +28,7 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
       :only_printable_characters,
       :only_printable_characters_and_newlines,
       :email,
+      :uuid,
       :username_characters,
       :at_least_one_alphanumeric_character,
     ]
@@ -85,6 +86,18 @@ class StringFormatValidatorTest < ActiveSupport::TestCase
     foo = FooClass.new("valid.email@gmail.com")
     foo.validate
     refute_includes foo.errors[:bar], 'must be a valid email'
+  end
+
+  test ':uuid rule checks that the value is a valid uuid format' do
+    FooClass.validates(:bar, string_format: { rules: [:uuid] })
+
+    foo = FooClass.new("not-a-valid-uuid")
+    foo.validate
+    assert_includes foo.errors[:bar], 'must be a valid uuid'
+
+    foo = FooClass.new("624f6dd0-91f2-4026-a684-01924da4be84")
+    foo.validate
+    refute_includes foo.errors[:bar], 'must be a valid uuid'
   end
 
   test ':username_characters rule checks that the value can only contain alphanum, space, tilde, underscore, hyphen, and period characters' do

@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#index', param: :q
 
-  resources :github_webhooks, only: [:create, :index, :show]
-
-  resources :games, param: :handle, only: [:index, :show]
+  resources :games, param: :handle, only: [:index, :show] do
+    resources :github_webhook, path: 'github-webhooks', param: :uuid, only: [] do
+      resources :github_webhook_events, path: 'events', only: [:create, :index, :show]
+    end
+  end
 
   resources :users, param: :handle, only: [:show]
   get '/signup', to: 'users#new'

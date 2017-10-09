@@ -2,6 +2,10 @@ alex_adventures:
   title: Alex Adventures
   description: Join Alex as he explores the vast underbelly of modern society.
   handle: alex-adventures
+star_gator:
+  title: Star Gator
+  description: Fight the evil lord Penelope and bring balance back to the stars.
+  handle: star-gator
 super_biker:
   title: Super Biker
   description: A fast-paced action *racer*.

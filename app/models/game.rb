@@ -5,6 +5,7 @@ class Game < ApplicationRecord
 
   has_many :game_screenshots
   has_many :game_releases
+  has_one :github_webhook
   has_and_belongs_to_many :users
 
   validates :title,
