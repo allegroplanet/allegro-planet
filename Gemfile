@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails-controller-testing'
 gem 'elasticsearch-model'
+gem 'git', '~> 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
