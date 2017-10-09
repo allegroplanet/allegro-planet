@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class GithubWebhookEventsControllerTest < ActionDispatch::IntegrationTest
+  def github_webhook
+    @github_webhook ||= GithubWebhook.first
+  end
+
   def github_webhook_event
     @github_webhook_event ||= github_webhook_events(:new_pull_request)
   end
 
   test 'GET #create is successful' do
-    post github_webhook_events_path, params: { payload: "asdf" }
+    post github_webhook_events_path, params: { payload: "asdf", uuid: github_webhook.uuid }
     assert_response :success
   end
 
@@ -16,10 +20,13 @@ class GithubWebhookEventsControllerTest < ActionDispatch::IntegrationTest
     payload = '{ "hello": "true" }'
     event = 'pull-request'
 
-    post github_webhook_events_path, params: { payload: payload }, headers: { 'X-GitHub-Event' => event }
+    post github_webhook_events_path,
+      params: { payload: payload, uuid: github_webhook.uuid },
+      headers: { 'X-GitHub-Event' => event }
 
     assert_equal event, GithubWebhookEvent.first.event
     assert_equal request.raw_post, GithubWebhookEvent.first.payload_json
+    assert_equal github_webhook, GithubWebhookEvent.first.github_webhook
   end
 
   test 'GET #show is successful' do
