@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GithubWebhookTest < ActiveSupport::TestCase
   def github_webhook
-    @github_webhook ||= GithubWebhook.new()
+    @github_webhook ||= GithubWebhook.new(game: Game.first)
   end
 
   test 'can be created' do
@@ -16,8 +16,18 @@ class GithubWebhookTest < ActiveSupport::TestCase
     refute github_webhook.uuid.nil?
   end
 
+  test 'without a game, is invalid' do
+    github_webhook.game = nil
+    github_webhook.validate
+    assert_includes github_webhook.errors[:game], "can't be blank"
+  end
+
   test 'has many github webhook events as "events"' do
     assert_association GithubWebhook, :has_many, :events
+  end
+
+  test 'belongs to a game' do
+    assert_association GithubWebhook, :belongs_to, :game
   end
 
   test 'uuid is formatted with the expected rules' do

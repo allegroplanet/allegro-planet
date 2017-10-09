@@ -70,6 +70,10 @@ class GameTest < ActiveSupport::TestCase
     assert_association Game, :has_many, :game_releases
   end
 
+  test 'has one github webhook' do
+    assert_association Game, :has_one, :github_webhook
+  end
+
   test 'has and belongs to many users' do
     assert_association Game, :has_and_belongs_to_many, :users
   end
