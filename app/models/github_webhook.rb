@@ -6,6 +6,10 @@ class GithubWebhook < ApplicationRecord
   validates :uuid,
     string_format: { rules: [:uuid] }
 
+  def to_param
+    uuid
+  end
+
   private
 
   def generate_uuid

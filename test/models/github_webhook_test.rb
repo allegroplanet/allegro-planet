@@ -24,4 +24,9 @@ class GithubWebhookTest < ActiveSupport::TestCase
     expected_validation_rules = [:uuid]
     assert_validates_format_rules expected_validation_rules, GithubWebhook, :uuid
   end
+
+  test 'returns its uuid as its param' do
+    github_webhook = github_webhooks(:star_gator)
+    assert_equal github_webhook.uuid, github_webhook.to_param
+  end
 end
