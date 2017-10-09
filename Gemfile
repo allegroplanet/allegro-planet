@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-controller-testing'
 gem 'elasticsearch-model'
 gem 'git', '~> 1.3.0'
+gem 'rubyzip', '~> 1.2.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
