@@ -35,6 +35,12 @@ class GithubWebhookEventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal github_webhook, GithubWebhookEvent.first.github_webhook
   end
 
+  test 'GET #create with a missmatching game and webhook, raises an exception' do
+    assert_raise ArgumentError do
+      post game_github_webhook_github_webhook_events_path(games(:alex_adventures), github_webhooks(:star_gator))
+    end
+  end
+
   test 'GET #show is successful' do
     get game_github_webhook_github_webhook_event_path(game, github_webhooks(:star_gator), github_webhook_event)
     assert_response :success
