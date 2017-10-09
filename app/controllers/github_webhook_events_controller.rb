@@ -1,17 +1,17 @@
-class GithubWebhooksController < ApplicationController
+class GithubWebhookEventsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    GithubWebhook.create!(event: github_event_header, payload_json: payload_param)
+    GithubWebhookEvent.create!(event: github_event_header, payload_json: payload_param)
     render json: { success: true }
   end
 
   def index
-    @webhooks = GithubWebhook.order(created_at: :desc)
+    @webhooks = GithubWebhookEvent.order(created_at: :desc)
   end
 
   def show
-    @webhook = GithubWebhook.find(id_param)
+    @webhook = GithubWebhookEvent.find(id_param)
   end
 
   private
