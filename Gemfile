@@ -7,26 +7,26 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'carrierwave', '~> 1.0'
-gem 'mini_magick', '~> 4.2.7'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'carrierwave-aws'
-gem 'figaro', '~> 1.1.1'
-gem 'rails_admin', '~> 1.4.2'
+gem 'figaro'
+gem 'rails_admin'
 gem 'redcarpet'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass'
 gem 'erubis'
 gem 'autoprefixer-rails'
 gem 'pry'
-gem 'rails', '~> 5.2.1'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
+gem 'rails'
+gem 'pg'
+gem 'puma'
 gem 'sass-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-gem 'bcrypt', '~> 3.1.7'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'bcrypt'
 gem 'rails-controller-testing'
 gem 'elasticsearch-model'
 
@@ -35,10 +35,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
+  gem 'web-console'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
