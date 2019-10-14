@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'graphql'
 gem 'carrierwave', '~> 1.2.3'
 gem 'mini_magick', '~> 4.2.10'
 gem 'carrierwave-aws', '~> 1.3.0'
