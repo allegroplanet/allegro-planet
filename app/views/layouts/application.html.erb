@@ -2,20 +2,14 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <title>AllegroPlanet</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
-    <div class="container">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>
