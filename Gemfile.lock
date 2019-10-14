@@ -105,6 +105,9 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
     graphql (1.9.13)
     haml (5.0.4)
       temple (>= 0.8.0)
@@ -275,6 +278,7 @@ DEPENDENCIES
   elasticsearch-model (~> 6.0.0)
   erubis (~> 2.7.0)
   figaro (~> 1.1.1)
+  graphiql-rails
   graphql
   jbuilder (~> 2.8.0)
   jquery-rails (~> 4.3.3)
