@@ -9,7 +9,7 @@ end
 
 gem 'graphql'
 gem 'carrierwave', '~> 1.2.3'
-gem 'mini_magick', '~> 4.2.10'
+gem 'mini_magick', '~> 4.9.4'
 gem 'carrierwave-aws', '~> 1.3.0'
 gem 'figaro', '~> 1.1.1'
 gem 'rails_admin', '~> 1.4.2'
