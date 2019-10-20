@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009074248) do
+ActiveRecord::Schema.define(version: 2019_10_19_204137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "handle", null: false
+    t.string "title", null: false
+    t.text "body_markdown", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["handle"], name: "index_articles_on_handle"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
 
   create_table "game_files", id: :serial, force: :cascade do |t|
     t.string "file"
@@ -88,6 +99,7 @@ ActiveRecord::Schema.define(version: 20171009074248) do
     t.index ["handle"], name: "index_users_on_handle"
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "game_releases", "games"
   add_foreign_key "game_screenshots", "games"
   add_foreign_key "github_webhook_events", "github_webhooks"
