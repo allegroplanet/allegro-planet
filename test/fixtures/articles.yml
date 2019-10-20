@@ -3,3 +3,12 @@ basic_tutorial:
   title: Basic Tutorial
   body_markdown: |
     Welcome to this amazing article!
+  published: true
+
+an_unpublished_tutorial:
+  handle: unpublished-tutorial
+  title: Unpublished Tutorial
+  body_markdown: |
+    Welcome to this amazing article!  It's a work in progress.  I'm not going to release it until it's in just
+    fantastic shape!
+  published: false

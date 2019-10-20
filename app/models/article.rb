@@ -14,6 +14,10 @@ class Article < ApplicationRecord
     presence: true,
     allow_blank: false,
     string_format: { rules: [:only_printable_characters_and_newlines] }
+  validates :published,
+    presence: true
+
+  scope :published, -> { where(published: true) }
 
   def to_param
     handle
