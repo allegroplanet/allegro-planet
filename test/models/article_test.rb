@@ -121,7 +121,20 @@ class ArticleTest < ActiveSupport::TestCase
     article.published = nil
     article.validate
 
-    assert_includes article.errors[:published], "can't be blank"
+    assert_includes article.errors[:published], 'must be either true or false'
+  end
+
+  test "published can be either true or false" do
+    article = articles(:basic_tutorial)
+
+    valid_published_values = [ true, false, ]
+
+    valid_published_values.each do |valid_published_value|
+      article.published = valid_published_value
+      article.validate
+
+      assert_empty article.errors[:published]
+    end
   end
 
   test "The published scope returns only articles that are marked as published" do
