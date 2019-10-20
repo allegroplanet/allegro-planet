@@ -15,7 +15,7 @@ class Article < ApplicationRecord
     allow_blank: false,
     string_format: { rules: [:only_printable_characters_and_newlines] }
   validates :published,
-    presence: true
+    inclusion: { in: [true, false], message: 'must be either true or false' }
 
   scope :published, -> { where(published: true) }
 
