@@ -109,18 +109,6 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes article.errors[:handle], 'has already been taken'
   end
 
-  test "belongs to a user" do
-    assert_association Article, :belongs_to, :user
-  end
-
-  test "user must exist" do
-    article = articles(:basic_tutorial)
-    article.user = nil
-    article.validate
-
-    assert_includes article.errors[:user], 'must exist'
-  end
-
   test "uses the handle as the param" do
     article = articles(:basic_tutorial)
     expected_param = 'basic-tutorial'

@@ -1,8 +1,6 @@
 class Article < ApplicationRecord
   before_validation :generate_handle
 
-  belongs_to :user
-
   validates :title,
     presence: true,
     uniqueness: true,
