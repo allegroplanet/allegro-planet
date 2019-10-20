@@ -17,6 +17,8 @@ class Article < ApplicationRecord
   validates :published,
     presence: true
 
+  scope :published, -> { where(published: true) }
+
   def to_param
     handle
   end

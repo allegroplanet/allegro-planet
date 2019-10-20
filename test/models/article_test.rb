@@ -123,4 +123,13 @@ class ArticleTest < ActiveSupport::TestCase
 
     assert_includes article.errors[:published], "can't be blank"
   end
+
+  test "The published scope returns only articles that are marked as published" do
+    assert Article.where(published: false).any?
+    assert Article.where(published: true).any?
+
+    expected_published_articles = Article.where(published: true)
+
+    assert_equal expected_published_articles, Article.published
+  end
 end
