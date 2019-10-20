@@ -115,4 +115,12 @@ class ArticleTest < ActiveSupport::TestCase
 
     assert_equal expected_param, article.to_param
   end
+
+  test "published must be present" do
+    article = articles(:basic_tutorial)
+    article.published = nil
+    article.validate
+
+    assert_includes article.errors[:published], "can't be blank"
+  end
 end
