@@ -19,6 +19,23 @@ RailsAdmin.config do |config|
     show_in_app
   end
 
+  # Article
+
+  config.model 'Article' do
+    object_label_method do
+      :title
+    end
+
+    edit do
+      field :title
+      field :handle do
+        read_only true
+        help "Auto-generated based on title."
+      end
+      field :body_markdown
+    end
+  end
+
   # User
 
   config.model 'User' do
