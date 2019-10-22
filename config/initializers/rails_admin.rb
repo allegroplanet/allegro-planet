@@ -32,6 +32,7 @@ RailsAdmin.config do |config|
         read_only true
         help "Auto-generated based on title."
       end
+      field :published
       field :body_markdown
     end
   end
