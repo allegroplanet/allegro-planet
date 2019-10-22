@@ -1,0 +1,17 @@
+<h1>Dashboard<h1>
+
+<h1>Games</h1>
+
+<ul>
+  <% @games.each do |game| %>
+    <li><%= link_to(game.title, game) %></li>
+  <% end %>
+</ul>
+
+<h1>Articles</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li><%= link_to(article.title, article) %></li>
+  <% end %>
+</ul>

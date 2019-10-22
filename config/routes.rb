@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#index', param: :q
 
+  get '/dashboard', to: 'dashboard#index'
+
   resources :games, param: :handle, only: [:index, :show] do
     resources :github_webhook, path: 'github-webhooks', param: :uuid, only: [] do
       resources :github_webhook_events, path: 'events', only: [:create, :index, :show]
