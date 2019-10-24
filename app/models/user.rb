@@ -21,8 +21,8 @@ class User < ApplicationRecord
     presence: true,
     uniqueness: true
   validates :password,
-    length: { minimum: 8 },
-    string_format: { rules: [:only_printable_characters, :starts_with_non_whitespace, :ends_with_non_whitespace] },
+    length: { minimum: 3 },
+    string_format: { rules: [:only_printable_characters] },
     allow_nil: true
 
   def to_param

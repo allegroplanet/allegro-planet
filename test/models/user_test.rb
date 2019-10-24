@@ -99,22 +99,10 @@ class UserTest < ActiveSupport::TestCase
     refute user.save
   end
 
-  test 'with a password less than 8 characters, is invalid' do
-    user.password = 'pw2shrt'
+  test 'with a password less than 3 characters, is invalid' do
+    user.password = 'pw'
     user.validate
-    assert_includes user.errors[:password], 'is too short (minimum is 8 characters)'
-  end
-
-  test 'with a password that starts with whitespace, is invalid' do
-    user.password = ' startwithspace'
-    user.validate
-    assert_includes user.errors[:password], "can't start with whitespace"
-  end
-
-  test 'with a password that ends with whitespace, is invalid' do
-    user.password = 'endswithspace '
-    user.validate
-    assert_includes user.errors[:password], "can't end with whitespace"
+    assert_includes user.errors[:password], 'is too short (minimum is 3 characters)'
   end
 
   test 'with a password that contains non-printable characters, is invalid' do
