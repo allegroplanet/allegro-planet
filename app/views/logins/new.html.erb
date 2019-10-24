@@ -1,0 +1,15 @@
+<% provide(:title, 'Sign Up') %>
+<div>
+  <h1>Log In</h1>
+  <%= form_with(url: '/logins', method: 'post') do |f| %>
+    <%= render 'shared/login_error_messages' %>
+
+    <%= f.label :username %><br>
+    <%= f.text_field :username %><br>
+
+    <%= f.label :password %><br>
+    <%= f.password_field :password %><br>
+
+    <%= f.submit "Log in!" %>
+  <% end %>
+</div>

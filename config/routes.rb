@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, param: :handle, only: [:index, :show]
   resources :articles, param: :handle, only: [:index, :show]
+  resources :logins, only: [:create, :destroy, :new]
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'

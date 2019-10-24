@@ -7,5 +7,11 @@
     <li><a href="/articles">Articles</a></li>
     <li><a href="/games">Games</a></li>
     <li><a href="/users">Users</a></li>
+    <% if current_user %>
+      <li><a href="/dashboard"><%= current_user.username %></a></li>
+    <% else %>
+      <li><a href="<%= new_login_path %>">Log In</a></li>
+      <li><a href="<%= signup_path %>">Sign Up</a></li>
+    <% end %>
   </ul>
 </nav>
