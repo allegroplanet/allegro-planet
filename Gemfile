@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'graphql'
-gem 'carrierwave', '~> 1.2.3'
+gem 'carrierwave', '~> 1.3.2'
 gem 'mini_magick', '~> 4.9.4'
 gem 'carrierwave-aws', '~> 1.3.0'
 gem 'figaro', '~> 1.1.1'
